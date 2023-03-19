@@ -39,6 +39,18 @@ int getTokens(char *string, Token tokens[]) {
             newToken.tokenType = OPERATOR_OR;
             i++;
         }
+        else if (string[i] == 40) { // if char is "("
+            newToken.tokenType = PARANTHESIS_OPENING;
+            i++;
+        }
+        else if (string[i] == 41) { // if char is ")"
+            newToken.tokenType = PARANTHESIS_CLOSING;
+            i++;
+        }
+        else if (string[i] == 44) { // if char is ","
+            newToken.tokenType = SEPERETOR_COMMA;
+            i++;
+        }
         tokens[size] = newToken;
         size++;
     }
