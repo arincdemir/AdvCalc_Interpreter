@@ -23,6 +23,21 @@ int getTokens(char *string, Token tokens[]) {
         } else if (string[i] == 43) { // if char is "+"
             newToken.tokenType = OPERATOR_PLUS;
             i++;
+        } else if (string[i] == 45) { // if char is "-"
+            newToken.tokenType = OPERATOR_MINUS;
+            i++;
+        }
+        else if (string[i] == 42) { // if char is "*"
+            newToken.tokenType = OPERATOR_MULTIPLICATION;
+            i++;
+        }
+        else if (string[i] == 38) { // if char is "&"
+            newToken.tokenType = OPERATOR_AND;
+            i++;
+        }
+        else if (string[i] == 124) { // if char is "|"
+            newToken.tokenType = OPERATOR_OR;
+            i++;
         }
         tokens[size] = newToken;
         size++;
