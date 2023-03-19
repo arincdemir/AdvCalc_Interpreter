@@ -6,8 +6,11 @@ int main() {
     while (1){
         char input[256];
         scanf("%s", input);
-        Token *tokens = getTokens(input);
+        Token tokens[256];
+        int size = getTokens(input, tokens);
+        for (int i = 0; i < size; ++i) {
+            printf("%d, %d, %s\n", tokens[i].tokenType, tokens[i].value, tokens[i].name);
+        }
 
-        printf("%d\n", tokens[0].value);
     }
 }

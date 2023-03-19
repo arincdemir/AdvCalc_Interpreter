@@ -1,7 +1,13 @@
 #include "token.h"
-Token *getTokens(char *string) {
-    static Token myToken;
-    myToken.tokenType = INTEGER;
-    myToken.value = 99;
-    return &myToken;
+int getTokens(char *string, Token tokens[]) {
+    int i = 0;
+    while (i < 3){
+        Token newToken;
+        newToken.tokenType = INTEGER;
+        newToken.value = i;
+        newToken.name = "aaa";
+        tokens[i] = newToken;
+        i++;
+    }
+    return i;
 }

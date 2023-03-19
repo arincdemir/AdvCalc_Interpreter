@@ -1,2 +1,2 @@
 
-Token *getTokens(char *string);
+int getTokens(char *string, Token tokens[]);
