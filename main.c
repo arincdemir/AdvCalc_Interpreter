@@ -5,7 +5,7 @@
 int main() {
     while (1){
         char input[256];
-        scanf("%s", input);
+        fgets(input, 256, stdin);
         Token tokens[256];
         int size = getTokens(input, tokens);
         for (int i = 0; i < size; ++i) {
