@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "token.h"
 #include "lexer.h"
 
@@ -10,6 +11,11 @@ int main() {
         int size = getTokens(input, tokens);
         for (int i = 0; i < size; ++i) {
             printf("%d, %d, %s\n", tokens[i].tokenType, tokens[i].value, tokens[i].name);
+        }
+
+        // Free the dynamic memory created in the lexer.
+        for (int i = 0; i < size; ++i) {
+            free(tokens[i].name);
         }
 
     }

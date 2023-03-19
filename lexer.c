@@ -5,6 +5,32 @@
 #include <string.h>
 #include "helpers.h"
 
+int isReservedKeyword(char *string) {
+    if (strcmp(string, "xor") == 0 || strcmp(string, "ls") == 0 || strcmp(string, "rs") == 0 ||
+        strcmp(string, "lr") == 0 ||
+        strcmp(string, "rr") == 0 || strcmp(string, "not") == 0) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+TokenType getKeywordType(char *string) {
+    if (strcmp(string, "xor") == 0) {
+        return FUNCTION_XOR;
+    } else if (strcmp(string, "ls") == 0) {
+        return FUNCTION_LS;
+    } else if (strcmp(string, "rs") == 0) {
+        return FUNCTION_RS;
+    } else if (strcmp(string, "lr") == 0) {
+        return FUNCTION_LR;
+    } else if (strcmp(string, "rr") == 0) {
+        return FUNCTION_RR;
+    } else if (strcmp(string, "not") == 0) {
+        return FUNCTION_NOT;
+    }
+}
+
 int getTokens(char *string, Token tokens[]) {
     int size = 0;
     int inputLength = strlen(string) - 1;
@@ -12,7 +38,10 @@ int getTokens(char *string, Token tokens[]) {
     while (i < inputLength) {
         Token newToken;
         //printf("here");
-        if (isdigit(string[i])) { // if char is a digit
+        if (string[i] == 32) { // if char is a space
+            i++;
+            continue;
+        } else if (isdigit(string[i])) { // if char is a digit
             int j = i + 1;
             while (j < inputLength && isdigit(string[j])) { // calculate where the number ends
                 j++;
@@ -29,9 +58,13 @@ int getTokens(char *string, Token tokens[]) {
             // todo dont forget to free the memory allocated!
             char *name = calloc(j - i, sizeof(char));
             sliceString(string, name, i, j);
-            // todo check if name is a reserved keyword
-            newToken.tokenType = VARIABLE;
-            newToken.name = name;
+            // check if name is a reserved keyword
+            if (isReservedKeyword(name)) {
+                newToken.tokenType = getKeywordType(name);
+            } else {
+                newToken.tokenType = VARIABLE;
+                newToken.name = name;
+            }
             i = j;
         } else if (string[i] == 43) { // if char is "+"
             newToken.tokenType = OPERATOR_PLUS;
