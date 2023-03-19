@@ -26,10 +26,11 @@ int getTokens(char *string, Token tokens[]) {
             while (j < inputLength && isalpha(string[j])) {
                 j++;
             }
-            newToken.tokenType = VARIABLE;
             // todo dont forget to free the memory allocated!
             char *name = calloc(j - i, sizeof(char));
             sliceString(string, name, i, j);
+            // todo check if name is a reserved keyword
+            newToken.tokenType = VARIABLE;
             newToken.name = name;
             i = j;
         } else if (string[i] == 43) { // if char is "+"
