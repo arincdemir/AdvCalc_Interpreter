@@ -37,6 +37,8 @@ int getTokens(char *string, Token tokens[]) {
     int i = 0;
     while (i < inputLength) {
         Token newToken;
+        newToken.value = -1;
+        newToken.name = "default";
         if (string[i] == 32) { // if char is a space
             i++;
             continue;
