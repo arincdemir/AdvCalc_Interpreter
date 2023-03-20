@@ -15,6 +15,7 @@ typedef enum {
     SEPERETOR_COMMA,
     INTEGER,
     VARIABLE,
+    EQUAL_SIGN,
 } TokenType;
 
 typedef struct{
