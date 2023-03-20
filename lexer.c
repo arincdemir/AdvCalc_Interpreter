@@ -1,6 +1,7 @@
 #include "token.h"
 #include <ctype.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 #include "helpers.h"
 
@@ -36,7 +37,6 @@ int getTokens(char *string, Token tokens[]) {
     int i = 0;
     while (i < inputLength) {
         Token newToken;
-        //printf("here");
         if (string[i] == 32) { // if char is a space
             i++;
             continue;
