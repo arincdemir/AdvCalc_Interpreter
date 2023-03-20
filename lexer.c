@@ -89,6 +89,9 @@ int getTokens(char *string, Token tokens[]) {
         } else if (string[i] == 44) { // if char is ","
             newToken.tokenType = SEPERETOR_COMMA;
             i++;
+        } else if (string[i] == 61) { // if char is "="
+            newToken.tokenType = EQUAL_SIGN;
+            i++;
         }
         tokens[size] = newToken;
         size++;
