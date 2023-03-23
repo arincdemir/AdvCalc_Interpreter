@@ -30,6 +30,7 @@ int main()
         if (isError(tokens, size))
         {
             printf("Error!\n");
+            // Free the dynamic memory created in the lexer.
             for (int i = 0; i < size; ++i)
             {
                 if (tokens[i].tokenType == VARIABLE)
