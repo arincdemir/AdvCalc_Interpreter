@@ -37,7 +37,7 @@ int getTokens(char *string, Token tokens[]) {
     int i = 0;
     while (i < inputLength) {
         Token newToken;
-        printf("%p", &newToken);
+        printf("%p\n", &newToken);
         newToken.value = -1;
         newToken.name = "default";
         if (string[i] == 32) { // if char is a space
