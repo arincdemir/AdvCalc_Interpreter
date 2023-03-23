@@ -12,3 +12,5 @@ void addVariable(variableList *list, char *name, int value);
 variableList *createVariableList();
 
 int getVariable(variableList *list, char *name);
+
+void deleteList(variableList *list);

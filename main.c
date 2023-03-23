@@ -8,8 +8,8 @@
 int main()
 {
     variableList *variable_list = createVariableList();
-    addVariable(variable_list, "a", 5);
-    addVariable(variable_list, "b", 10);
+    addVariable(variable_list, "a", 31);
+    addVariable(variable_list, "b", 69);
     printf("%d\n", getVariable(variable_list, "a"));
     printf("%d\n", getVariable(variable_list, "b"));
     while (1)
@@ -30,13 +30,24 @@ int main()
         if (isError(tokens, size))
         {
             printf("Error!\n");
+            for (int i = 0; i < size; ++i)
+            {
+                if (tokens[i].tokenType == VARIABLE)
+                {
+                    free(tokens[i].name);
+                }
+            }
             continue;
         }
 
         // Free the dynamic memory created in the lexer.
         for (int i = 0; i < size; ++i)
         {
-            free(tokens[i].name);
+            if (tokens[i].tokenType == VARIABLE)
+            {
+                free(tokens[i].name);
+            }
         }
     }
+    deleteList(variable_list);
 }
