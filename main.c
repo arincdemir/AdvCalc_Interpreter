@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "token.h"
 #include "lexer.h"
+#include "error.h"
 
 int main()
 {
@@ -18,6 +19,12 @@ int main()
         for (int i = 0; i < size; ++i)
         {
             printf("%d, %d, %s\n", tokens[i].tokenType, tokens[i].value, tokens[i].name);
+        }
+
+        if (isError(tokens, size))
+        {
+            printf("Error!");
+            continue;
         }
 
         // Free the dynamic memory created in the lexer.
