@@ -3,9 +3,15 @@
 #include "token.h"
 #include "lexer.h"
 #include "error.h"
+#include "variableList.h"
 
 int main()
 {
+    variableList *variable_list = createVariableList();
+    addVariable(variable_list, "a", 5);
+    addVariable(variable_list, "b", 10);
+    printf("%d\n", getVariable(variable_list, "a"));
+    printf("%d\n", getVariable(variable_list, "b"));
     while (1)
     {
         char input[256];
@@ -23,7 +29,7 @@ int main()
 
         if (isError(tokens, size))
         {
-            printf("Error!");
+            printf("Error!\n");
             continue;
         }
 
