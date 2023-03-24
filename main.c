@@ -40,7 +40,7 @@ int main()
             }
             continue;
         }
-
+        
         // Free the dynamic memory created in the lexer.
         for (int i = 0; i < size; ++i)
         {
