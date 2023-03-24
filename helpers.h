@@ -5,4 +5,12 @@ void sliceString(char *string, char *destination, int start, int end);
 int parCheck(Token tokens[], int size);
 
 // counts how many same type tokens are
-int tokenTypeCounter(TokenType type, Token tokens[], int size)
+int tokenTypeCounter(TokenType type, Token tokens[], int size);
+
+// there is at least one sequential
+int isSequential(Token tokens[], int size, TokenType tokenTypes1[], int size1, TokenType tokenTypes2[], int size2);
+int isSequential(Token tokens[], int size, TokenType tokenType1, TokenType tokenType2);
+
+// there is at least one not sequential
+int isNotSequential(Token tokens[], int size, TokenType tokenTypes1[], int size1, TokenType tokenTypes2[], int size2);
+int isNotSequential(Token tokens[], int size, TokenType tokenType1, TokenType tokenType2);
