@@ -1,6 +1,8 @@
 #include "token.h"
 #include "variableList.h"
-#include "stdio.h"
+#include <stdio.h>
+#include "tokenList.h"
+
 
 void changeVariables(Token tokens[], int tokensSize, variableList *variable_list) {
     for (int i = 0; i < tokensSize; ++i) {
