@@ -19,8 +19,17 @@ typedef enum {
     EMPTY,
 } TokenType;
 
+typedef enum {
+    PRECEDENCE_OR,
+    PRECEDENCE_AND,
+    PRECEDENCE_PLUS_MINUS,
+    PRECEDENCE_TIMES,
+    PRECEDENCE_FUNCTION
+}Precedence;
+
 typedef struct{
     TokenType tokenType;
     int value;
     char *name;
+    Precedence precedence;
 }Token;
