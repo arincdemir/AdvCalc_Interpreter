@@ -1,4 +1,5 @@
 #include "token.h"
+#include "variableList.h"
 
 int isAssignment(Token tokens[], int tokensSize) {
     for (int i = 0; i < tokensSize; i++)
@@ -13,10 +14,12 @@ int isAssignment(Token tokens[], int tokensSize) {
     return 0;
 }
 
-void assign(variableList *variable_list, Token tokens[], int tokensSize) {
-    
+int evaluate(Token tokens[], int begin, int end) {
+    return 31;
 }
 
-int evaluate(Token tokens[], int begin, int end) {
-    
+void assign(variableList *variable_list, Token tokens[], int tokensSize) {
+    char *varName = tokens[0].name;
+    addVariable(variable_list, varName, evaluate(tokens, 2, tokensSize - 1));
 }
+

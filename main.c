@@ -9,10 +9,6 @@
 int main()
 {
     variableList *variable_list = createVariableList();
-    addVariable(variable_list, "a", 31);
-    addVariable(variable_list, "b", 69);
-    printf("%d\n", getVariable(variable_list, "a"));
-    printf("%d\n", getVariable(variable_list, "b"));
     while (1)
     {
         char input[256];
@@ -23,10 +19,6 @@ int main()
         }
         Token tokens[256];
         int size = getTokens(input, tokens);
-        for (int i = 0; i < size; ++i)
-        {
-            printf("%d, %d, %s\n", tokens[i].tokenType, tokens[i].value, tokens[i].name);
-        }
 
         if (isError(tokens, size))
         {
@@ -47,7 +39,7 @@ int main()
             assign(variable_list, tokens, size);
         }
         else {
-            printf("%d", evaluate(tokens, 0, size - 1));
+            printf("%d\n", evaluate(tokens, 0, size - 1));
         }
         
         
