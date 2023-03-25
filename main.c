@@ -34,6 +34,8 @@ int main()
             continue;
         }
 
+        changeVariables(tokens, size, variable_list);
+
         if (isAssignment(tokens, size))
         {
             assign(variable_list, tokens, size);

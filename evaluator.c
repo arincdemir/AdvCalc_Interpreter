@@ -1,6 +1,15 @@
 #include "token.h"
 #include "variableList.h"
 
+void changeVariables(Token tokens[], int tokensSize, variableList *variable_list) {
+    for (int i = 0; i < tokensSize; ++i) {
+        if(tokens[i].tokenType == VARIABLE) {
+            tokens[i].tokenType = INTEGER;
+            tokens[i].value = getVariable(variable_list, tokens[i].name);
+        }
+    }
+}
+
 int isAssignment(Token tokens[], int tokensSize) {
     for (int i = 0; i < tokensSize; i++)
     {
