@@ -2,5 +2,5 @@
 
 int isError (Token tokens[], int sizeOfTokens)
 {
-    return 1;
+    return 0;
 }

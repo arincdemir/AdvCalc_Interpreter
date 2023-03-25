@@ -4,6 +4,7 @@
 #include "lexer.h"
 #include "error.h"
 #include "variableList.h"
+#include "evaluator.h"
 
 int main()
 {
@@ -40,6 +41,15 @@ int main()
             }
             continue;
         }
+
+        if (isAssignment(tokens, size))
+        {
+            assign(variable_list, tokens, size);
+        }
+        else {
+            printf("%d", evaluate(tokens, 0, size - 1));
+        }
+        
         
         // Free the dynamic memory created in the lexer.
         for (int i = 0; i < size; ++i)
