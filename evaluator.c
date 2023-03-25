@@ -1,5 +1,6 @@
 #include "token.h"
 #include "variableList.h"
+#include "stdio.h"
 
 void changeVariables(Token tokens[], int tokensSize, variableList *variable_list) {
     for (int i = 0; i < tokensSize; ++i) {
@@ -22,6 +23,8 @@ int isAssignment(Token tokens[], int tokensSize) {
     
     return 0;
 }
+
+
 
 int evaluate(Token tokens[], int begin, int end) {
     return 31;
