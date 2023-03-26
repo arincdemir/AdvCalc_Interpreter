@@ -10,6 +10,8 @@ typedef struct TokenList {
     int size;
 }TokenList;
 
+TokenList *createTokenList();
+
 Token peekTop(TokenList *tokenList);
 
 Token popTop(TokenList *tokenList);

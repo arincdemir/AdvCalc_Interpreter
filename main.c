@@ -5,6 +5,7 @@
 #include "error.h"
 #include "variableList.h"
 #include "evaluator.h"
+#include "tokenList.h"
 
 int main()
 {

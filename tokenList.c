@@ -1,6 +1,7 @@
 #include "token.h"
 #include "tokenList.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 TokenList *createTokenList() {
     TokenList *newList = malloc(sizeof(TokenList));
@@ -35,5 +36,8 @@ void push(TokenList *tokenList, Token token) {
     newNode->prev = tokenList->tail;
     tokenList->tail->next = newNode;
     tokenList->tail = newNode;
+    if(tokenList->size == 0) {
+        tokenList->head = newNode;
+    }
     tokenList->size++;
 }
