@@ -12,10 +12,11 @@ typedef enum {
     FUNCTION_NOT,
     PARANTHESIS_OPENING,
     PARANTHESIS_CLOSING,
-    SEPERETOR_COMMA,
+    SEPERATOR_COMMA,
     INTEGER,
     VARIABLE,
     EQUAL_SIGN,
+    OTHER,
 } TokenType;
 
 typedef struct{

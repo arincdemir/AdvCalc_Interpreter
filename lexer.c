@@ -7,9 +7,9 @@
 
 int isReservedKeyword(char *string)
 {
-    if (strcmp(string, "xor") == 0 || strcmp(string, "ls") == 0 || strcmp(string, "rs") == 0 ||
-        strcmp(string, "lr") == 0 ||
-        strcmp(string, "rr") == 0 || strcmp(string, "not") == 0)
+    if (strcmp(string, "xor") == 0 || strcmp(string, "ls") == 0 || 
+        strcmp(string, "rs") == 0  || strcmp(string, "lr") == 0 ||
+        strcmp(string, "rr") == 0  || strcmp(string, "not") == 0)
     {
         return 1;
     }
@@ -137,12 +137,15 @@ int getTokens(char *string, Token tokens[])
         }
         else if (string[i] == 44)
         { // if char is ","
-            newToken.tokenType = SEPERETOR_COMMA;
+            newToken.tokenType = SEPERATOR_COMMA;
             i++;
         }
         else if (string[i] == 61)
         { // if char is "="
             newToken.tokenType = EQUAL_SIGN;
+            i++;
+        } else {
+            newToken.tokenType = OTHER;
             i++;
         }
         tokens[size] = newToken;
