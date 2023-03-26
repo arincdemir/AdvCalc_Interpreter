@@ -144,6 +144,9 @@ int getTokens(char *string, Token tokens[])
         { // if char is "="
             newToken.tokenType = EQUAL_SIGN;
             i++;
+        } else {
+            newToken.tokenType = OTHER;
+            i++;
         }
         tokens[size] = newToken;
         size++;

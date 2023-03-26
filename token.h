@@ -16,6 +16,7 @@ typedef enum {
     INTEGER,
     VARIABLE,
     EQUAL_SIGN,
+    OTHER,
 } TokenType;
 
 typedef struct{

@@ -9,6 +9,7 @@ int main()
     while (1)
     {
         char input[256];
+        printf(">");
         fgets(input, 256, stdin);
         if (input == NULL)
         {
@@ -36,7 +37,7 @@ int main()
             printf("3333333333333333333333333333333\n");
         }*/
         
-        //printf("4444444444444444444444444444444444444\n");
+        
         continue;
     }
 }
