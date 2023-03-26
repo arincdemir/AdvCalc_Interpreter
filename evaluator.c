@@ -49,6 +49,7 @@ TokenList *infixToPostfix(TokenList *tokenList) {
                     break;
                 }
             }
+            push(operatorStack, token);
         } else if (token.tokenType == SEPERETOR_COMMA) { // while the top operator is not a left paranthesis, push it
             while (operatorStack->size > 0 && peekTop(operatorStack).tokenType != PARANTHESIS_OPENING) {
                 push(output, popTop(operatorStack));
