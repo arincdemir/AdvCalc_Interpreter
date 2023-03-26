@@ -82,6 +82,12 @@ int evaluate(Token tokens[], int begin, int end) {
     for (int i = begin; i < end + 1; ++i) {
         push(tokenList, tokens[i]);
     }
+    TokenList *postFix = infixToPostfix(tokenList);
+    int size = postFix->size;
+    for (int i = 0; i < size; ++i) {
+        Token pop = popBottom(postFix);
+        printf("token: %d , %d \n", pop.tokenType, pop.value);
+    }
     return 31;
 }
 
