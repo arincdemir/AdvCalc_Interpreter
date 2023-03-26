@@ -34,10 +34,15 @@ void push(TokenList *tokenList, Token token) {
     struct Node *newNode = malloc(sizeof(struct Node));
     newNode->token = token;
     newNode->prev = tokenList->tail;
-    tokenList->tail->next = newNode;
-    tokenList->tail = newNode;
     if(tokenList->size == 0) {
         tokenList->head = newNode;
+        tokenList->tail = newNode;
     }
+    else
+    {   
+    tokenList->tail->next = newNode;
+    tokenList->tail = newNode;
+    }
+   
     tokenList->size++;
 }
