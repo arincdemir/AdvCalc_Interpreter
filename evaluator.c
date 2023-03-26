@@ -26,8 +26,19 @@ int isAssignment(Token tokens[], int tokensSize) {
     return 0;
 }
 
+TokenList *infixToPostfix(TokenList *tokenList) {
+
+}
+
+int evaluatePostfix(TokenList *queue) {
+    return 31;
+}
 
 int evaluate(Token tokens[], int begin, int end) {
+    TokenList *tokenList = createTokenList();
+    for (int i = begin; i < end + 1; ++i) {
+        push(tokenList, tokens[i]);
+    }
     return 31;
 }
 

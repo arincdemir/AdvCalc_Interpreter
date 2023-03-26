@@ -42,11 +42,9 @@ int main()
             assign(variable_list, tokens, size);
         }
         else {
-            printf("evaluated: %d\n", evaluate(tokens, 0, size - 1));
+            printf("%d\n", evaluate(tokens, 0, size - 1));
         }
 
-        printf("assigned: %d\n", getVariable(variable_list, "test"));
-        
         // Free the dynamic memory created in the lexer.
         for (int i = 0; i < size; ++i)
         {
