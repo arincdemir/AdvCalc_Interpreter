@@ -24,7 +24,8 @@ typedef enum {
     PRECEDENCE_AND,
     PRECEDENCE_PLUS_MINUS,
     PRECEDENCE_TIMES,
-    PRECEDENCE_FUNCTION
+    PRECEDENCE_FUNCTION,
+    PRECEDENCE_EMPTY,
 }Precedence;
 
 typedef struct{

@@ -57,6 +57,7 @@ int getTokens(char *string, Token tokens[])
         Token newToken;
         newToken.value = -1;
         newToken.name = "default";
+        newToken.precedence = PRECEDENCE_EMPTY;
         if (string[i] == 37)
         { // if char is "%"
             break;
