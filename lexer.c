@@ -57,6 +57,7 @@ int getTokens(char *string, Token tokens[])
         Token newToken;
         newToken.value = -1;
         newToken.name = "default";
+        newToken.precedence = PRECEDENCE_EMPTY;
         if (string[i] == 37)
         { // if char is "%"
             break;
@@ -92,6 +93,7 @@ int getTokens(char *string, Token tokens[])
             if (isReservedKeyword(name))
             {
                 newToken.tokenType = getKeywordType(name);
+                newToken.precedence = PRECEDENCE_FUNCTION;
             }
             else
             {
@@ -103,26 +105,31 @@ int getTokens(char *string, Token tokens[])
         else if (string[i] == 43)
         { // if char is "+"
             newToken.tokenType = OPERATOR_PLUS;
+            newToken.precedence = PRECEDENCE_PLUS_MINUS;
             i++;
         }
         else if (string[i] == 45)
         { // if char is "-"
             newToken.tokenType = OPERATOR_MINUS;
+            newToken.precedence = PRECEDENCE_PLUS_MINUS;
             i++;
         }
         else if (string[i] == 42)
         { // if char is "*"
             newToken.tokenType = OPERATOR_MULTIPLICATION;
+            newToken.precedence = PRECEDENCE_TIMES;
             i++;
         }
         else if (string[i] == 38)
         { // if char is "&"
             newToken.tokenType = OPERATOR_AND;
+            newToken.precedence = PRECEDENCE_AND;
             i++;
         }
         else if (string[i] == 124)
         { // if char is "|"
             newToken.tokenType = OPERATOR_OR;
+            newToken.precedence = PRECEDENCE_OR;
             i++;
         }
         else if (string[i] == 40)
