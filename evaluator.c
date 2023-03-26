@@ -2,6 +2,7 @@
 #include "variableList.h"
 #include <stdio.h>
 #include "tokenList.h"
+#include "functions.h"
 
 
 void changeVariables(Token tokens[], int tokensSize, variableList *variable_list) {
@@ -75,7 +76,73 @@ TokenList *infixToPostfix(TokenList *tokenList) {
 }
 
 int evaluatePostfix(TokenList *queue) {
-    return 31;
+    TokenList *stack = createTokenList();
+    while (queue->size > 0) {
+        Token token = popBottom(queue);
+        if (token.tokenType == INTEGER) {
+            push(stack, token);
+        } else {
+            Token ans;
+            ans.tokenType = INTEGER;
+            if (token.tokenType == OPERATOR_MULTIPLICATION) {
+                Token a = popTop(stack);
+                Token b = popTop(stack);
+                ans.value = a.value * b.value;
+            } else if (token.tokenType == OPERATOR_MINUS) {
+                Token a = popTop(stack);
+                Token b = popTop(stack);
+                ans.value = b.value - a.value;
+            }
+            else if (token.tokenType == OPERATOR_PLUS) {
+                Token a = popTop(stack);
+                Token b = popTop(stack);
+                ans.value = b.value + a.value;
+            }
+            else if (token.tokenType == OPERATOR_AND) {
+                Token a = popTop(stack);
+                Token b = popTop(stack);
+                ans.value = b.value & a.value;
+            }
+            else if (token.tokenType == OPERATOR_OR) {
+                Token a = popTop(stack);
+                Token b = popTop(stack);
+                ans.value = b.value | a.value;
+            }
+            else if (token.tokenType == FUNCTION_XOR) {
+                Token a = popTop(stack);
+                Token b = popTop(stack);
+                ans.value = xor(b.value, a.value);
+            }
+            else if (token.tokenType == FUNCTION_LR) {
+                Token a = popTop(stack);
+                Token b = popTop(stack);
+                ans.value = lr(b.value, a.value);
+            }
+            else if (token.tokenType == FUNCTION_LS) {
+                Token a = popTop(stack);
+                Token b = popTop(stack);
+                ans.value = ls(b.value, a.value);
+            }
+            else if (token.tokenType == FUNCTION_NOT) {
+                Token a = popTop(stack);
+                ans.value = not(a.value);
+            }
+            else if (token.tokenType == FUNCTION_RR) {
+                Token a = popTop(stack);
+                Token b = popTop(stack);
+                ans.value = rr(b.value, a.value);
+            }
+            else if (token.tokenType == FUNCTION_RS) {
+                Token a = popTop(stack);
+                Token b = popTop(stack);
+                ans.value = rs(b.value, a.value);
+            }
+
+            push(stack,ans);
+        }
+    }
+
+    return popTop(stack).value;
 }
 
 int evaluate(Token tokens[], int begin, int end) {
@@ -85,11 +152,11 @@ int evaluate(Token tokens[], int begin, int end) {
     }
     TokenList *postFix = infixToPostfix(tokenList);
     int size = postFix->size;
-    for (int i = 0; i < size; ++i) {
-        Token pop = popBottom(postFix);
-        printf("token: %d , %d \n", pop.tokenType, pop.value);
-    }
-    return 31;
+    //for (int i = 0; i < size; ++i) {
+    //    Token pop = popBottom(postFix);
+    //    printf("token: %d , %d \n", pop.tokenType, pop.value);
+    //}
+    return evaluatePostfix(postFix);
 }
 
 void assign(variableList *variable_list, Token tokens[], int tokensSize) {
