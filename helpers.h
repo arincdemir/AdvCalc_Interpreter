@@ -1,3 +1,9 @@
+#include "token.h"
+
+#ifndef ADVCALC_INTERPRETER_HELPERS_H
+#define ADVCALC_INTERPRETER_HELPERS_H
+
+
 // Function that slices a string and copies it to destination starting at start(inclusive), ending at end(exclusive).
 void sliceString(char *string, char *destination, int start, int end);
 
@@ -14,3 +20,5 @@ int isSeq(Token tokens[], int size, TokenType tokenType1, TokenType tokenType2);
 // there is at least one not sequential
 int isNotSeqArr(Token tokens[], int size, TokenType tokenTypes1[], int size1, TokenType tokenTypes2[], int size2);
 int isNotSeq(Token tokens[], int size, TokenType tokenType1, TokenType tokenType2);
+
+#endif
