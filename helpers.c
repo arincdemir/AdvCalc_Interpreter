@@ -94,3 +94,8 @@ int isNotSeq(Token tokens[], int size, TokenType tokenType1, TokenType tokenType
     }
     return 0;
 }
+int intToBinary(int k) {
+    if (k == 0) return 0;
+    if (k == 1) return 1;                       /* optional */
+    return (k % 2) + 10 * intToBinary(k / 2);
+}

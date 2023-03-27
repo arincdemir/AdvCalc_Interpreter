@@ -1,3 +1,4 @@
+
 #include "token.h"
 
 #ifndef ADVCALC_INTERPRETER_HELPERS_H
@@ -21,4 +22,6 @@ int isSeq(Token tokens[], int size, TokenType tokenType1, TokenType tokenType2);
 int isNotSeqArr(Token tokens[], int size, TokenType tokenTypes1[], int size1, TokenType tokenTypes2[], int size2);
 int isNotSeq(Token tokens[], int size, TokenType tokenType1, TokenType tokenType2);
 
-#endif
+
+int intToBinary(int k);
+#endif 
