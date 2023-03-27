@@ -1,5 +1,4 @@
-#ifndef TOKEN_H
-#define TOKEN_H
+
 // Function that slices a string and copies it to destination starting at start(inclusive), ending at end(exclusive).
 void sliceString(char *string, char *destination, int start, int end);
 
@@ -18,4 +17,3 @@ int isNotSeqArr(Token tokens[], int size, TokenType tokenTypes1[], int size1, To
 int isNotSeq(Token tokens[], int size, TokenType tokenType1, TokenType tokenType2);
 
 int intToBinary(int k);
-#endif 
