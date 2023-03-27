@@ -23,7 +23,6 @@ int isError (Token tokens[], int sizeOfTokens) {
 
     // if there is an error in the number of parentheses
     else if (parCheck(tokens, sizeOfTokens)) {
-        printf("%d", parCheck(tokens, sizeOfTokens));
         printf("parenthesis error\n");
         return 1;
     }
@@ -58,7 +57,6 @@ int isError (Token tokens[], int sizeOfTokens) {
             return 1;
         }
     }
-    printf("NO ERROR\n");
     
     //NO ERROR
     return 0;
