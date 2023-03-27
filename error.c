@@ -16,6 +16,7 @@ int isError (Token tokens[], int sizeOfTokens) {
         printf("undefined symbol\n");
         return 1;
     }
+
     else if (tokenTypeCounter(EQUAL_SIGN, tokens, sizeOfTokens) > 1) {
         printf("more than one equal sign\n");
         return 1;
@@ -23,7 +24,6 @@ int isError (Token tokens[], int sizeOfTokens) {
 
     // if there is an error in the number of parentheses
     else if (parCheck(tokens, sizeOfTokens)) {
-        printf("%d", parCheck(tokens, sizeOfTokens));
         printf("parenthesis error\n");
         return 1;
     }
@@ -40,7 +40,7 @@ int isError (Token tokens[], int sizeOfTokens) {
         return 1;
     }
 
-
+    //
     else if (isNotSeqArr(tokens, sizeOfTokens, funcsParen, NUM_FUNC_PAREN, openParan, 1)) {
         printf("paranthesis is needed after functions\n");
         return 1;
@@ -49,16 +49,17 @@ int isError (Token tokens[], int sizeOfTokens) {
 
     // if there is smt else except an alpha in the first part of the assignment
     else if (tokenTypeCounter(EQUAL_SIGN, tokens, sizeOfTokens)==1) {
-        if (tokens[1].tokenType == EQUAL_SIGN) {
-            if ((tokens[0].tokenType != VARIABLE)||(sizeOfTokens==2)) {
-                printf("faulty assignment error\n");
+        if (sizeOfTokens==1) {
+            if (tokens[1].tokenType == EQUAL_SIGN) {
+                if ((tokens[0].tokenType != VARIABLE)||(sizeOfTokens==2)) {
+                    printf("faulty assignment error\n");
+                    return 1;
+                }
+            } else {
                 return 1;
             }
-        } else {
-            return 1;
         }
     }
-    printf("NO ERROR\n");
     
     //NO ERROR
     return 0;
