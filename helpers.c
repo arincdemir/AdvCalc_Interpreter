@@ -107,5 +107,4 @@ int loggg(int num, int len) {
     else if (num<10) return 1;
     return 1 + loggg(num/10);
 }
-=======
 
