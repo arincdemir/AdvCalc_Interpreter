@@ -5,6 +5,8 @@
 #include <string.h>
 
 void sliceString(char *string, char *destination, int start, int end);
+int intToBinary(int dec);
+int loggg(int num);
 
 int xor(int a, int b){
     return a^b;
@@ -19,24 +21,19 @@ int rs(int a, int i) {
 }
 
 int lr(int a, int i) {
-    int bin = 0;
     char str[256];
     char str1[256];
-    char str2[256];
-
-    itoa(a, str, 2);
-    printf("1. %s\n", str);
+    itoa(20, str, 2); //10100
     #ifndef HELPER_H
-    sliceString(str, str1, 0, i);
-    printf("%s\n", str);
-    sliceString(str, str2, i, strlen(str));
-    printf("%s\n", str2);
-
-    #endif 
-    printf("%s", str2);
-    strcat(str1, str2);
+    //int bin = intToBinary(a);
+    //printf("%d", log10(10));
+    //printf("%d", loggg(bin));
+    //int rem = bin % pow(10, nDigits-i);
+    //bin = rem * pow(10, i) + bin/pow(10, nDigits-i);
+    sliceString(str, str1, 0, 2);
     printf("%s", str1);
-    
+    #endif 
+    //printf("%d", bin);
     return 0;
 }
 
