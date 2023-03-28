@@ -23,5 +23,9 @@ int isNotSeqArr(Token tokens[], int size, TokenType tokenTypes1[], int size1, To
 int isNotSeq(Token tokens[], int size, TokenType tokenType1, TokenType tokenType2);
 
 
-int intToBinary(int k);
+int intToBinary(int dec);
+int loggg(int num);
+
+
 #endif 
+
