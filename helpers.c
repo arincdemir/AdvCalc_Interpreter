@@ -94,8 +94,18 @@ int isNotSeq(Token tokens[], int size, TokenType tokenType1, TokenType tokenType
     }
     return 0;
 }
-int intToBinary(int k) {
-    if (k == 0) return 0;
-    if (k == 1) return 1;                       /* optional */
-    return (k % 2) + 10 * intToBinary(k / 2);
+
+int intToBinary(int dec) {
+    if (dec==0) return 0;
+    if (dec==1) return 1;
+    return (dec%2) + 10 * intToBinary(dec/2);
 }
+
+int loggg(int num, int len) {
+    printf("num: %d", num);
+    if (num==0) return 0;
+    else if (num<10) return 1;
+    return 1 + loggg(num/10);
+}
+=======
+
