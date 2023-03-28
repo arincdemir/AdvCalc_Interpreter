@@ -1,11 +1,9 @@
 #include <stdio.h>
-
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "helpers.h"
-#include "token.h"
+
 
 int xor(int a, int b){
     return a^b;
@@ -23,6 +21,7 @@ int lr(int a, int i) {
     char str[256];
     char str1[256];
     itoa(20, str, 2); //10100
+    #ifndef HELPER_H
     //int bin = intToBinary(a);
     //printf("%d", log10(10));
     //printf("%d", loggg(bin));
@@ -30,7 +29,8 @@ int lr(int a, int i) {
     //bin = rem * pow(10, i) + bin/pow(10, nDigits-i);
     sliceString(str, str1, 0, 2);
     printf("%s", str1);
-
+    #endif 
+    //printf("%d", bin);
     return 0;
 }
 

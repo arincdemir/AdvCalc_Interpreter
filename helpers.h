@@ -1,13 +1,10 @@
 
-<<<<<<< HEAD
-=======
 #include "token.h"
 
 #ifndef ADVCALC_INTERPRETER_HELPERS_H
 #define ADVCALC_INTERPRETER_HELPERS_H
 
 
->>>>>>> ffce5fb492dc722d6c9926d3b93133d2a3be8e47
 // Function that slices a string and copies it to destination starting at start(inclusive), ending at end(exclusive).
 void sliceString(char *string, char *destination, int start, int end);
 
@@ -25,9 +22,6 @@ int isSeq(Token tokens[], int size, TokenType tokenType1, TokenType tokenType2);
 int isNotSeqArr(Token tokens[], int size, TokenType tokenTypes1[], int size1, TokenType tokenTypes2[], int size2);
 int isNotSeq(Token tokens[], int size, TokenType tokenType1, TokenType tokenType2);
 
-<<<<<<< HEAD
-int intToBinary(int k);
-=======
 
 int intToBinary(int dec);
 int loggg(int num);
@@ -35,4 +29,3 @@ int loggg(int num);
 
 #endif 
 
->>>>>>> ffce5fb492dc722d6c9926d3b93133d2a3be8e47
