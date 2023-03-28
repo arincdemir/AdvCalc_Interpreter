@@ -1,3 +1,7 @@
+#ifndef ADVCALC_INTERPRETER_TOKEN_H
+#define ADVCALC_INTERPRETER_TOKEN_H
+
+
 typedef enum {
     OPERATOR_PLUS,
     OPERATOR_MINUS,
@@ -35,3 +39,5 @@ typedef struct{
     char *name;
     Precedence precedence;
 }Token;
+
+#endif

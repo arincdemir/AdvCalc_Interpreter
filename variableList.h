@@ -1,3 +1,7 @@
+
+#ifndef ADVCALC_INTERPRETER_VARIABLE_LIST_H
+#define ADVCALC_INTERPRETER_VARIABLE_LIST_H
+
 struct arrayNode
 {
     char *string;
@@ -16,3 +20,5 @@ variableList *createVariableList();
 int getVariable(variableList *list, char *name);
 
 void deleteList(variableList *list);
+
+#endif

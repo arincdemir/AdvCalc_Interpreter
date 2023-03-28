@@ -1,12 +1,11 @@
 #include <stdio.h>
+
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-void sliceString(char *string, char *destination, int start, int end);
-int intToBinary(int dec);
-int loggg(int num);
+#include "helpers.h"
+#include "token.h"
 
 int xor(int a, int b){
     return a^b;
@@ -33,7 +32,7 @@ int lr(int a, int i) {
     sliceString(str, str1, 0, 2);
     printf("%s", str1);
     #endif 
-    //printf("%d", bin);
+
     return 0;
 }
 
