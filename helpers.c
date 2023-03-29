@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 #include "token.h"
 
 void sliceString(char *string, char *destination, int start, int end) {
@@ -101,10 +102,18 @@ int intToBinary(int dec) {
     return (dec%2) + 10 * intToBinary(dec/2);
 }
 
-int loggg(int num, int len) {
-    printf("num: %d", num);
+int loggg(int num) {
     if (num==0) return 0;
     else if (num<10) return 1;
     return 1 + loggg(num/10);
 }
 
+int binToInt(int bin) {
+    int dec = 0;
+    int nDigit = loggg(bin);
+    for (int i = 0; i < nDigit; i++) {
+        dec += (bin % 10) * pow(2, i);
+        bin = bin / 10;
+    }
+    return dec;
+}
