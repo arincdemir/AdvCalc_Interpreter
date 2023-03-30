@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include "token.h"
+#include "tokenList.h"
 
 void sliceString(char *string, char *destination, int start, int end) {
     for (int i = 0; i < end - start; ++i) {
@@ -116,4 +117,60 @@ int binToInt(int bin) {
         bin = bin / 10;
     }
     return dec;
+}
+
+Token* twoArgFunc(Token tokens[], int size) {
+    Token retTokens1[256];
+    Token retTokens2[256]; 
+    int a = 0;
+    for (int i = 0; i < size; i++) {
+        if ((a==0) & (tokens[i].tokenType == FUNCTION_LR || tokens[i].tokenType == FUNCTION_LS ||
+            tokens[i].tokenType == FUNCTION_NOT || tokens[i].tokenType == FUNCTION_RR ||
+            tokens[i].tokenType == FUNCTION_RS || tokens[i].tokenType == FUNCTION_XOR)) {
+            int index = 0;
+            for (int k = i+2; k < size; k++) {
+                int whichComma = 0;
+                if (tokens[k].tokenType == SEPERATOR_COMMA) {
+                    if(whichComma==0) {
+                        i = k + 1;
+                        a=1;
+                        break;
+                    } else {
+                        whichComma--;
+                    }
+                } else if (tokens[i].tokenType == FUNCTION_LR || tokens[i].tokenType == FUNCTION_LS ||
+                           tokens[i].tokenType == FUNCTION_NOT || tokens[i].tokenType == FUNCTION_RR ||
+                           tokens[i].tokenType == FUNCTION_RS || tokens[i].tokenType == FUNCTION_XOR) {
+                    whichComma++;
+                } else {
+                    retTokens1[index] = tokens[k];
+                    index++;
+                }
+                
+            } 
+        }
+        else if ((a==1) & (tokens[i].tokenType == FUNCTION_LR || tokens[i].tokenType == FUNCTION_LS ||
+        tokens[i].tokenType == FUNCTION_NOT || tokens[i].tokenType == FUNCTION_RR ||
+        tokens[i].tokenType == FUNCTION_RS || tokens[i].tokenType == FUNCTION_XOR))
+        {
+            int count = 0;
+            int index = 0;
+            for(int i=0 ; i<size ; ++i) {
+                if(tokens[i].tokenType == PARANTHESIS_OPENING) {
+                    count++;
+                } else if(tokens[i].tokenType == PARANTHESIS_CLOSING) {
+                    count--;
+                }
+                if (count==-1) {
+                    i = size;
+                    break;
+                }
+                retTokens2[index] = tokens[i];
+            }
+        }
+    }
+    Token (*tokensListList)[2][256];
+    tokensListList[0] = retTokens1;
+    tokensListList[1] = retTokens2;
+    return tokensListList;
 }
