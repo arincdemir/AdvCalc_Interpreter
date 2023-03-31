@@ -28,7 +28,18 @@ Created an arraylist implementation to match variable `names` and `values`. It h
 #### main.c
 The entry program of the project. Here, our `variableList` is initialized. Inside an infinite while loop, input is taken and fed through `lexer.c` to get the token representation. After that, errors in the expression are checked by feeding the tokens to `error.c`. Then, the variables in the tokens are changed into their respected integer values with `changeVariables(tokens)` in `evaluator.c`. Whether the expression is an assignment or not is checked with `isAssignment(tokens)` in also `evaluator.c`. Finally if it is an assignment it is fed through `assign(tokens)` or else, `evaluate(tokens)`, again, both in `evaluator.c`.
 
-### lexer.c
+#### lexer.c
 In this file, the main function is `getTokens(expr)`. The expression is looped through characterwise in a loop, and tokens are created with the characters' respected tokenTypes. The precedences of the tokens are set if the tokens are operators. Also values of the integers and the names of the variables are taken here, and assigned to their respectful tokens. There are two additional functions `isReservedKeyword(str)`, and `getKeywordType(str)` for determining if a string represents one of the functions such as `lr` and `not`.
+
+#### error.c
+This file is used to check if the given expression is erronous. If an error exists, the program doesn't terminate, but prints `Error!`
+
+#### tokenList.c
+Here, we have the implementation of a hybrid of queue and stack data structure that holds tokens. The implementation basically relies on doubly linked linked lists, and has `push()`, `popTop()`, `popBottom()`, `peekTop()` functionality. 
+
+#### evaluator.c
+This file has a few functions in it. First is `changeVariables(tokens, variableList)` which changes variable tokens into their respected integer value. Another function is `isAssignment(tokens)` which checks if the expression is an assignment. There is the function `assign(variableList, tokens)` which feeds the expression through `evaluate()`, and assigns the value of it to the variable at the left side of the equation. Another function is `evaluate(tokens)` which evaluates the end calculation of the tokens by first creating a tokenList with them, then feeding it through `infixToPostfix()`, and then feeding the return value of it to `evaluatePostfix()`. 
+
+The mightiest function of this file is `infixToPostfix(tokenList)` which, as the name suggests, converts the infix expression to postfix. This function uses an extended version of the "Shunting Yard" algorithm which can also handle unary or binary prefix functions. The algorithm relies on pushing the operands on the output, and pushing the operators on top of a stack while the current operators precedence is larger than the top one. Another big function of this file is `evaluatePostfix(queue)` which evaluates a postfix expression using a stack to push integers into. When an operator is encountered, the topmost two integers are taken as its operands, and again the answer is pushed on top of the stack. The final remaining element in the stack is the final answer.
 
 ## Difficulties Encountered
