@@ -57,7 +57,7 @@ int isNotSeqArr(Token tokens[], int size, TokenType tokenTypes1[], int size1, To
     }
     return 0;
 }
-
+// there is at least one sequential
 int isSeq(Token tokens[], int size, TokenType tokenType1, TokenType tokenType2) {
     for (int i = 0; i < size - 1; ++i) {
         if (tokens[i].tokenType == tokenType1) {
@@ -71,7 +71,7 @@ int isSeq(Token tokens[], int size, TokenType tokenType1, TokenType tokenType2) 
 }
 
 // there is at least one not sequential
-// 0: hiç art arda gelmediler   1: en az bir kez art arda geldi
+// 0: there are never not sequential    1: there is at least one time, they come after them
 int isSeqArr(Token tokens[], int size, TokenType tokenTypes1[], int size1, TokenType tokenTypes2[], int size2) {
     for (int i = 0; i < size - 1; ++i) {
         for (int j = 0; j < size1; ++j) {
@@ -87,6 +87,7 @@ int isSeqArr(Token tokens[], int size, TokenType tokenTypes1[], int size1, Token
     return 0;
 }
 
+//checks that whether there are two tokentype sequential
 int isNotSeq(Token tokens[], int size, TokenType tokenType1, TokenType tokenType2) {
     for (int i = 0; i < size - 1; ++i) {
         if (tokens[i].tokenType == tokenType1) {
@@ -98,6 +99,7 @@ int isNotSeq(Token tokens[], int size, TokenType tokenType1, TokenType tokenType
     return 0;
 }
 
+//if there is two-args-function check its requirements
 int twoArgFunc(Token tokens[], int size, int startIndex) {
     printf("startIndex: %d   size: %d\n", startIndex, size);
     if (startIndex==size+1) {
@@ -159,11 +161,11 @@ int twoArgFunc(Token tokens[], int size, int startIndex) {
                     count--;
                 }
                 if (count==-1) {
-                    a = 0;
                     if (index2==0) {
                         printf("222222222");
                         return 1;
                     }   
+                    
                     break;
                 }
                 
@@ -178,11 +180,9 @@ int twoArgFunc(Token tokens[], int size, int startIndex) {
     tokens[index+index2+4].tokenType != OPERATOR_MULTIPLICATION || tokens[index+index2+4].tokenType != OPERATOR_AND ||
     tokens[index+index2+4].tokenType != OPERATOR_OR)) return 1;
     //printf("index: %d  index2: %d\n", index, index2);
-    int isEr1 = isError(retTokens1, index);
-    int isEr2 = isError(retTokens2, index2);
-    int twoArg3 = twoArgFunc(tokens, size, index0+index+index2+5);
-    
-    
+    //int isEr1 = isError(retTokens1, index);
+    //int isEr2 = isError(retTokens2, index2);
+    //int twoArg3 = twoArgFunc(tokens, size, index0+index+index2+5);
     //printf("isEr1: %d  isEr2: %d   twoArg3: %d\n", isEr1, isEr2, twoArg3);
-    return isEr1 || isEr2 || twoArg3;
+    return isError(retTokens1, index) || isError(retTokens2, index2) || twoArgFunc(tokens, size, index0+index+index2+5);
 }
