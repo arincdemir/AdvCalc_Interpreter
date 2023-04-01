@@ -4,6 +4,7 @@
 #include "tokenList.h"
 #include "error.h"
 
+// slice a string starting start, ending end, and put it into the destination
 void sliceString(char *string, char *destination, int start, int end) {
     for (int i = 0; i < end - start; ++i) {
         destination[i] = string[start + i];
@@ -34,7 +35,6 @@ int parCheck(Token tokens[], int size) {
             return 1;
         }
     }
-    //printf("%d", count);
     if (count!=0) {
         return 1;
     }
@@ -101,17 +101,13 @@ int isNotSeq(Token tokens[], int size, TokenType tokenType1, TokenType tokenType
 
 //if there is two-args-function check its requirements
 int twoArgFunc(Token tokens[], int size, int startIndex) {
-    printf("startIndex: %d   size: %d\n", startIndex, size);
     if (startIndex==size+1) {
         return 0;
     } else if (startIndex==size-1) {
         return 1;
     } else if (startIndex==size) {
-        printf("nasil");
         return 1;
-    } 
-    printf("startIndex: %d   size: %d\n", startIndex, size);
-    
+    }     
     Token retTokens1[256];
     int index;
     Token retTokens2[256]; 
@@ -131,7 +127,6 @@ int twoArgFunc(Token tokens[], int size, int startIndex) {
                         a=1;
                         i=k;
                         if (index==0) {
-                            printf("1111111");
                             return 1; 
                         }                    
                         break;
@@ -162,7 +157,6 @@ int twoArgFunc(Token tokens[], int size, int startIndex) {
                 }
                 if (count==-1) {
                     if (index2==0) {
-                        printf("222222222");
                         return 1;
                     }   
                     

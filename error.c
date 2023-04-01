@@ -2,8 +2,8 @@
 #include "helpers.h"
 #include <stdio.h>
 
-
-int isError (Token tokens[], int sizeOfTokens) {
+int isError(Token tokens[], int sizeOfTokens)
+{
 
     TokenType operators[] = {OPERATOR_AND, OPERATOR_MINUS, OPERATOR_MULTIPLICATION, OPERATOR_OR, OPERATOR_PLUS};
     const int NUM_OPERATORS = 5;
@@ -20,7 +20,13 @@ int isError (Token tokens[], int sizeOfTokens) {
     {   
         return 0;
     }
-    
+
+    else if (tokens[0].tokenType == OPERATOR_AND || tokens[0].tokenType == OPERATOR_OR || tokens[0].tokenType == OPERATOR_MINUS || tokens[0].tokenType == OPERATOR_PLUS || tokens[0].tokenType == OPERATOR_MULTIPLICATION
+    || tokens[sizeOfTokens - 1].tokenType == OPERATOR_AND || tokens[sizeOfTokens - 1].tokenType == OPERATOR_OR || tokens[sizeOfTokens - 1].tokenType == OPERATOR_MINUS || tokens[sizeOfTokens - 1].tokenType == OPERATOR_PLUS || tokens[sizeOfTokens - 1].tokenType == OPERATOR_MULTIPLICATION)
+    {
+        return 1;
+    }
+
     // if there are more than one equal sign in a line
     else if (tokenTypeCounter(OTHER, tokens, sizeOfTokens)>0) {
         //printf("undefined symbol\n");
@@ -40,7 +46,8 @@ int isError (Token tokens[], int sizeOfTokens) {
     }
 
     // if there is an error in the number of parentheses
-    else if (parCheck(tokens, sizeOfTokens)) {
+    else if (parCheck(tokens, sizeOfTokens))
+    {
         printf("parenthesis error\n");
         return 1;
     }
@@ -77,16 +84,21 @@ int isError (Token tokens[], int sizeOfTokens) {
         return 1;
     }
 
-
     // if there is smt else except an alpha in the first part of the assignment
-    else if (tokenTypeCounter(EQUAL_SIGN, tokens, sizeOfTokens)==1) {
-        if (sizeOfTokens==1) {
-            if (tokens[1].tokenType == EQUAL_SIGN) {
-                if ((tokens[0].tokenType != VARIABLE)||(sizeOfTokens==2)) {
+    else if (tokenTypeCounter(EQUAL_SIGN, tokens, sizeOfTokens) == 1)
+    {
+        if (sizeOfTokens == 1)
+        {
+            if (tokens[1].tokenType == EQUAL_SIGN)
+            {
+                if ((tokens[0].tokenType != VARIABLE) || (sizeOfTokens == 2))
+                {
                     printf("faulty assignment error\n");
                     return 1;
                 }
-            } else {
+            }
+            else
+            {
                 return 1;
             }
         }
@@ -101,12 +113,10 @@ int isError (Token tokens[], int sizeOfTokens) {
         {   
             //printf("twoargfunc\n");
             return 1;
-            
         }
     }
 
-    
-    //printf("NO ERROR\n");
-    //NO ERROR
+    // printf("NO ERROR\n");
+    // NO ERROR
     return 0;
 }

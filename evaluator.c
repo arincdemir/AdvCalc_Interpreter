@@ -75,13 +75,17 @@ TokenList *infixToPostfix(TokenList *tokenList) {
     return output;
 }
 
+// the implementation relies on pushing operands onto a stack, and whenever an operator is encountered,
+// take the amount of operands needed from the stack, do the operation, and again push it onto the stack
 int evaluatePostfix(TokenList *queue) {
     TokenList *stack = createTokenList();
     while (queue->size > 0) {
         Token token = popBottom(queue);
+        // if it is an integer, push to the stack
         if (token.tokenType == INTEGER) {
             push(stack, token);
         } else {
+            // take the required amount of operands from the stack, evaluate it, put on top of the stack
             Token ans;
             ans.tokenType = INTEGER;
             if (token.tokenType == OPERATOR_MULTIPLICATION) {
@@ -153,16 +157,13 @@ int evaluate(Token tokens[], int begin, int end) {
         push(tokenList, tokens[i]);
     }
 
+    // turn the tokens into postfix notation and return its evaluation
     TokenList *postFix = infixToPostfix(tokenList);
-    //int size = postFix->size;
-    //for (int i = 0; i < size; ++i) {
-    //    Token pop = popBottom(postFix);
-    //    printf("token: %d , %d \n", pop.tokenType, pop.value);
-    //}
     return evaluatePostfix(postFix);
 }
 
 void assign(variableList *variable_list, Token tokens[], int tokensSize) {
+    //evaluate an expression and assign the variable to it
     char *varName = tokens[0].name;
     addVariable(variable_list, varName, evaluate(tokens, 2, tokensSize - 1));
 }
