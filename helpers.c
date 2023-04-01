@@ -1,5 +1,8 @@
 #include <stdio.h>
+#include <math.h>
 #include "token.h"
+#include "tokenList.h"
+#include "error.h"
 
 void sliceString(char *string, char *destination, int start, int end) {
     for (int i = 0; i < end - start; ++i) {
@@ -101,10 +104,82 @@ int intToBinary(int dec) {
     return (dec%2) + 10 * intToBinary(dec/2);
 }
 
-int loggg(int num, int len) {
-    printf("num: %d", num);
+int loggg(int num) {
     if (num==0) return 0;
     else if (num<10) return 1;
     return 1 + loggg(num/10);
 }
 
+int binToInt(int bin) {
+    int dec = 0;
+    int nDigit = loggg(bin);
+    for (int i = 0; i < nDigit; i++) {
+        dec += (bin % 10) * pow(2, i);
+        bin = bin / 10;
+    }
+    return dec;
+}
+
+int twoArgFunc(Token tokens[], int size, int startIndex) {
+    if (startIndex==size-1) return 0;
+    Token retTokens1[256];
+    int index;
+    Token retTokens2[256]; 
+    int index2;
+    int a = 0;
+    int i = startIndex;
+    for (i = startIndex; i < size; i++) {
+        if ((a==0) && (tokens[i].tokenType == FUNCTION_LR || tokens[i].tokenType == FUNCTION_LS || tokens[i].tokenType == FUNCTION_RR ||
+            tokens[i].tokenType == FUNCTION_RS || tokens[i].tokenType == FUNCTION_XOR)) {
+            index = 0;
+            for (int k = i+2; k < size; k++) {
+                int whichComma = 0;
+                if (tokens[k].tokenType == SEPERATOR_COMMA) {
+                    if(whichComma==0) {
+                        a=1;
+                        i=k+1;
+                        if (index==0) return 1;                     
+                        break;
+                    } else {
+                        whichComma--;
+                    }
+                } else if (tokens[i].tokenType == FUNCTION_LR || tokens[i].tokenType == FUNCTION_LS || tokens[i].tokenType == FUNCTION_RR ||
+                           tokens[i].tokenType == FUNCTION_RS || tokens[i].tokenType == FUNCTION_XOR) {
+                    whichComma++;
+                    retTokens1[index] = tokens[k];
+                    index++;
+                } else {
+                    retTokens1[index] = tokens[k];
+                    index++;
+                }
+                
+            } 
+        }
+        else if (a==1)
+        {
+            int count = 0;
+            index2 = 0;
+            while(i < size) {                
+                if(tokens[i].tokenType == PARANTHESIS_OPENING) {
+                    printf("nasil yani\n");
+                    count++;
+                } else if(tokens[i].tokenType == PARANTHESIS_CLOSING) {
+                    printf("benceboyle\n");
+                    count--;
+                }
+                if (count==-1) {
+                    printf("himm\n");
+                    a = 0;
+                    if (index2==0) return 1;  
+                    break;
+                }
+                retTokens2[index2] = tokens[i];
+                index2++;
+                i++;
+            }
+        }
+    }
+    printf("1) %d   2) %d   \n", index, index2);
+    
+    return isError(retTokens1, index) || isError(retTokens2, index2) || twoArgFunc(tokens, size, index+index2+3);
+}

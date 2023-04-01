@@ -22,10 +22,10 @@ int isSeq(Token tokens[], int size, TokenType tokenType1, TokenType tokenType2);
 int isNotSeqArr(Token tokens[], int size, TokenType tokenTypes1[], int size1, TokenType tokenTypes2[], int size2);
 int isNotSeq(Token tokens[], int size, TokenType tokenType1, TokenType tokenType2);
 
-
 int intToBinary(int dec);
+int binToInt(int bin);
 int loggg(int num);
-
+int twoArgFunc(Token tokens[], int size, int startIndex);
 
 #endif 
 
