@@ -29,7 +29,7 @@ int isError(Token tokens[], int sizeOfTokens)
 
     // if there are more than one equal sign in a line
     else if (tokenTypeCounter(OTHER, tokens, sizeOfTokens)>0) {
-        printf("undefined symbol\n");
+        //printf("undefined symbol\n");
         return 1;
     }
 
@@ -41,46 +41,46 @@ int isError(Token tokens[], int sizeOfTokens)
     
     //there cannot be more than ONE equal sign
     else if (tokenTypeCounter(EQUAL_SIGN, tokens, sizeOfTokens) > 1) {
-        printf("more than one equal sign\n");
+        //printf("more than one equal sign\n");
         return 1;
     }
 
     // if there is an error in the number of parentheses
     else if (parCheck(tokens, sizeOfTokens))
     {
-        printf("parenthesis error\n");
+        //printf("parenthesis error\n");
         return 1;
     }
 
     //there are some tokenType's that cannot come after close paranthesis
     else if (isSeqArr(tokens, sizeOfTokens, closeParan, 1, cantComeAfterClosParan, 9))
     {
-        printf("close paran");
+        //printf("close paran");
         return 1;
     }
     
 
     // this error: ()
     else if (isSeq(tokens, sizeOfTokens, PARANTHESIS_OPENING, PARANTHESIS_CLOSING)) {
-        printf("paranthesis error ---> ()\n");
+        //printf("paranthesis error ---> ()\n");
         return 1;
     }
 
     // if there is sequential operation symbol
     else if (isSeqArr(tokens, sizeOfTokens, operators, NUM_OPERATORS, operators, NUM_OPERATORS)) {
-        printf("sequential operation symbol\n");
+        //printf("sequential operation symbol\n");
         return 1;
     }
 
     //variables and integers cannot come after themselves
     else if (isSeqArr(tokens, sizeOfTokens, varAndInt , 2, varAndInt, 2 )) {
-        printf("sequential integer or variable\n");
+        //printf("sequential integer or variable\n");
         return 1;
     }
 
     //paranthesis is needed after functions
     else if (isNotSeqArr(tokens, sizeOfTokens, funcsParen, NUM_FUNC_PAREN, openParan, 1)) {
-        printf("paranthesis is needed after functions\n");
+        //printf("paranthesis is needed after functions\n");
         return 1;
     }
 
@@ -93,7 +93,7 @@ int isError(Token tokens[], int sizeOfTokens)
             {
                 if ((tokens[0].tokenType != VARIABLE) || (sizeOfTokens == 2))
                 {
-                    printf("faulty assignment error\n");
+                    //printf("faulty assignment error\n");
                     return 1;
                 }
             }
