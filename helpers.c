@@ -106,7 +106,9 @@ int twoArgFunc(Token tokens[], int size, int startIndex) {
     } else if (startIndex==size-1) {
         return 0;
     } else if (startIndex==size) {
+        printf("3");
         return 1;
+
     }     
     Token retTokens1[256];
     int index;
@@ -127,6 +129,7 @@ int twoArgFunc(Token tokens[], int size, int startIndex) {
                         a=1;
                         i=k;
                         if (index==0) {
+                            printf("1");
                             return 1; 
                         }                    
                         break;
@@ -157,6 +160,7 @@ int twoArgFunc(Token tokens[], int size, int startIndex) {
                 }
                 if (count==-1) {
                     if (index2==0) {
+                        printf("2");
                         return 1;
                     }   
                     
