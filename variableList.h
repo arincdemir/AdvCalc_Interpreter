@@ -5,7 +5,7 @@
 struct arrayNode
 {
     char *string;
-    int value;
+    long long value;
 };
 typedef struct variableList
 {
@@ -13,11 +13,11 @@ typedef struct variableList
     struct arrayNode *array;
 } variableList;
 
-void addVariable(variableList *list, char *name, int value);
+void addVariable(variableList *list, char *name, long long value);
 
 variableList *createVariableList();
 
-int getVariable(variableList *list, char *name);
+long long getVariable(variableList *list, char *name);
 
 void deleteList(variableList *list);
 

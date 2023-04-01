@@ -74,7 +74,7 @@ int getTokens(char *string, Token tokens[])
             { // calculate where the number ends
                 j++;
             }
-            int value = atoi(string + i);
+            long long value = atoll(string + i);
             newToken.tokenType = INTEGER;
             newToken.value = value;
             i = j;

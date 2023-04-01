@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-void addVariable(variableList *list, char *name, int value)
+void addVariable(variableList *list, char *name, long long value)
 {
     int size = list->size;
     for (size_t i = 0; i < size; i++)
@@ -27,7 +27,7 @@ variableList *createVariableList()
     return list;
 }
 
-int getVariable(variableList *list, char *name)
+long long getVariable(variableList *list, char *name)
 {
     int size = list->size;
     for (size_t i = 0; i < size; i++)
