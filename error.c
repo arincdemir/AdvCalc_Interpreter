@@ -11,8 +11,14 @@ int isError (Token tokens[], int sizeOfTokens) {
     const int NUM_FUNC_PAREN = 6;
     TokenType openParan[] = {PARANTHESIS_OPENING};
 
+
+    if (sizeOfTokens==0)
+    {
+        return 0;
+    }
+    
     // if there are more than one equal sign in a line
-    if (tokenTypeCounter(OTHER, tokens, sizeOfTokens)>0) {
+    else if (tokenTypeCounter(OTHER, tokens, sizeOfTokens)>0) {
         printf("undefined symbol\n");
         return 1;
     }
@@ -67,11 +73,19 @@ int isError (Token tokens[], int sizeOfTokens) {
         }
     }
 
-    else if (twoArgFunc(tokens, sizeOfTokens, 0))
+    else if ((tokenTypeCounter(FUNCTION_LR, tokens, sizeOfTokens)+ tokenTypeCounter(FUNCTION_LS, tokens, sizeOfTokens) +
+    tokenTypeCounter(FUNCTION_RR, tokens, sizeOfTokens) + tokenTypeCounter(FUNCTION_RS, tokens, sizeOfTokens) 
+    + tokenTypeCounter(FUNCTION_XOR, tokens, sizeOfTokens))>0)
     {
-        return 1;
-        
+        if (twoArgFunc(tokens, sizeOfTokens, 0))
+        {   
+            printf("twoargfunc\n");
+            return 1;
+            
+        }
     }
+    
+    
     
 
     

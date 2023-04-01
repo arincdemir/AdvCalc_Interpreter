@@ -20,17 +20,15 @@ int rs(int a, int i) {
 
 int lr(int a, int i) {
     int bin = intToBinary(a);
-    int nDigits = loggg(bin);
-    i = i % nDigits;
-    int rem = bin % (int) pow(10, nDigits-i);
-    bin = rem * pow(10, i) + bin/pow(10, nDigits-i);
+    i = i % 64;
+    int rem = bin % (int) pow(10, 64-i);
+    bin = rem * pow(10, i) + bin/pow(10, 64-i);
     return binToInt(bin);
 }
 
 int rr(int a, int i) {
     int bin = intToBinary(a);
-    int nDigits = loggg(bin);
-    return lr(a, nDigits-i);
+    return lr(a, 64-i);
 }
 
 int not(int a) {
