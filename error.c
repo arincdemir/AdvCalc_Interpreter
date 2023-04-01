@@ -14,7 +14,8 @@ int isError (Token tokens[], int sizeOfTokens) {
 
 
     if (sizeOfTokens==0)
-    {
+    {   
+        printf("nedenn");
         return 0;
     }
     
