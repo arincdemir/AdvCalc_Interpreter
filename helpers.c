@@ -98,28 +98,6 @@ int isNotSeq(Token tokens[], int size, TokenType tokenType1, TokenType tokenType
     return 0;
 }
 
-int intToBinary(int dec) {
-    if (dec==0) return 0;
-    if (dec==1) return 1;
-    return (dec%2) + 10 * intToBinary(dec/2);
-}
-
-int loggg(int num) {
-    if (num==0) return 0;
-    else if (num<10) return 1;
-    return 1 + loggg(num/10);
-}
-
-int binToInt(int bin) {
-    int dec = 0;
-    int nDigit = loggg(bin);
-    for (int i = 0; i < nDigit; i++) {
-        dec += (bin % 10) * pow(2, i);
-        bin = bin / 10;
-    }
-    return dec;
-}
-
 int twoArgFunc(Token tokens[], int size, int startIndex) {
     printf("startIndex: %d   size: %d\n", startIndex, size);
     if (startIndex==size+1) {

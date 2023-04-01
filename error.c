@@ -92,6 +92,7 @@ int isError (Token tokens[], int sizeOfTokens) {
             
         }
     }
+
     
     //printf("NO ERROR\n");
     //NO ERROR
