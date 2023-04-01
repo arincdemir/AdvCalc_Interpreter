@@ -103,22 +103,25 @@ int twoArgFunc(Token tokens[], int size, int startIndex) {
     if (startIndex==size+1) {
         return 0;
     } else if (startIndex==size-1) {
-        return 0;
+        return 1;
     } else if (startIndex==size) {
+        printf("nasil");
         return 1;
     } 
-
+    printf("startIndex: %d   size: %d\n", startIndex, size);
     
     Token retTokens1[256];
     int index;
     Token retTokens2[256]; 
     int index2;
+    int index0 = 0;
     int a = 0;
-    int i = startIndex;
+    int i;
     for (i = startIndex; i < size; i++) {
         if ((a==0) && (tokens[i].tokenType == FUNCTION_LR || tokens[i].tokenType == FUNCTION_LS || tokens[i].tokenType == FUNCTION_RR ||
             tokens[i].tokenType == FUNCTION_RS || tokens[i].tokenType == FUNCTION_XOR)) {
             index = 0;
+            index0 = i;
             for (int k = i+2; k < size; k++) {
                 int whichComma = 0;
                 if (tokens[k].tokenType == SEPERATOR_COMMA) {
@@ -170,10 +173,16 @@ int twoArgFunc(Token tokens[], int size, int startIndex) {
             }
         } else return 0;
     }   
+
+    if ((size>index+index2+4) && (tokens[index+index2+4].tokenType != OPERATOR_PLUS || tokens[index+index2+4].tokenType != OPERATOR_MINUS ||
+    tokens[index+index2+4].tokenType != OPERATOR_MULTIPLICATION || tokens[index+index2+4].tokenType != OPERATOR_AND ||
+    tokens[index+index2+4].tokenType != OPERATOR_OR)) return 1;
     //printf("index: %d  index2: %d\n", index, index2);
     int isEr1 = isError(retTokens1, index);
     int isEr2 = isError(retTokens2, index2);
-    int twoArg3 = twoArgFunc(tokens, size, index+index2+5);
+    int twoArg3 = twoArgFunc(tokens, size, index0+index+index2+5);
+    
+    
     //printf("isEr1: %d  isEr2: %d   twoArg3: %d\n", isEr1, isEr2, twoArg3);
     return isEr1 || isEr2 || twoArg3;
 }
