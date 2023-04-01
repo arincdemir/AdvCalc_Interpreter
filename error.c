@@ -10,9 +10,17 @@ int isError (Token tokens[], int sizeOfTokens) {
     TokenType funcsParen[] = {FUNCTION_LR, FUNCTION_LS, FUNCTION_NOT, FUNCTION_RR, FUNCTION_RS, FUNCTION_XOR};
     const int NUM_FUNC_PAREN = 6;
     TokenType openParan[] = {PARANTHESIS_OPENING};
+    TokenType varAndInt[] = {VARIABLE, INTEGER};
 
+
+    if (sizeOfTokens==0)
+    {   
+        printf("nedenn");
+        return 0;
+    }
+    
     // if there are more than one equal sign in a line
-    if (tokenTypeCounter(OTHER, tokens, sizeOfTokens)>0) {
+    else if (tokenTypeCounter(OTHER, tokens, sizeOfTokens)>0) {
         printf("undefined symbol\n");
         return 1;
     }
@@ -46,6 +54,11 @@ int isError (Token tokens[], int sizeOfTokens) {
         return 1;
     }
 
+    else if (isSeqArr(tokens, sizeOfTokens, varAndInt , 2, varAndInt, 2 )) {
+        printf("sequential integer or variable\n");
+        return 1;
+    }
+
     //
     else if (isNotSeqArr(tokens, sizeOfTokens, funcsParen, NUM_FUNC_PAREN, openParan, 1)) {
         printf("paranthesis is needed after functions\n");
@@ -67,11 +80,20 @@ int isError (Token tokens[], int sizeOfTokens) {
         }
     }
 
-    //else if (twoArgFunc(tokens, sizeOfTokens, 0))
-    //{
-    //    return 1;
-        
-    //}
+    else if ((tokenTypeCounter(FUNCTION_LR, tokens, sizeOfTokens)+ tokenTypeCounter(FUNCTION_LS, tokens, sizeOfTokens) +
+    tokenTypeCounter(FUNCTION_RR, tokens, sizeOfTokens) + tokenTypeCounter(FUNCTION_RS, tokens, sizeOfTokens) 
+    + tokenTypeCounter(FUNCTION_XOR, tokens, sizeOfTokens))>0)
+    {
+        if (twoArgFunc(tokens, sizeOfTokens, 0))
+        {   
+            printf("twoargfunc\n");
+            return 1;
+            
+        }
+    }
+
+    
+    
     
 
     

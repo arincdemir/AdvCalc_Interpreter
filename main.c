@@ -21,6 +21,7 @@ int main()
         }
         Token tokens[256];
         int size = getTokens(input, tokens);
+        if (size==0) continue;  
 
         if (isError(tokens, size))
         {

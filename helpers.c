@@ -99,7 +99,10 @@ int isNotSeq(Token tokens[], int size, TokenType tokenType1, TokenType tokenType
 }
 
 int twoArgFunc(Token tokens[], int size, int startIndex) {
-    if (startIndex==size-1) return 0;
+    if (startIndex==size-1) {
+        return 0;
+    }
+    
     Token retTokens1[256];
     int index;
     Token retTokens2[256]; 
@@ -115,8 +118,10 @@ int twoArgFunc(Token tokens[], int size, int startIndex) {
                 if (tokens[k].tokenType == SEPERATOR_COMMA) {
                     if(whichComma==0) {
                         a=1;
-                        i=k+1;
-                        if (index==0) return 1;                     
+                        i=k;
+                        if (index==0) {
+                            return 1; 
+                        }                    
                         break;
                     } else {
                         whichComma--;
@@ -137,27 +142,25 @@ int twoArgFunc(Token tokens[], int size, int startIndex) {
         {
             int count = 0;
             index2 = 0;
-            while(i < size) {                
+            while(i < size) {  
                 if(tokens[i].tokenType == PARANTHESIS_OPENING) {
-                    printf("nasil yani\n");
                     count++;
                 } else if(tokens[i].tokenType == PARANTHESIS_CLOSING) {
-                    printf("benceboyle\n");
                     count--;
                 }
                 if (count==-1) {
-                    printf("himm\n");
                     a = 0;
-                    if (index2==0) return 1;  
+                    if (index2==0) {
+                        return 1;
+                    }   
                     break;
                 }
+                
                 retTokens2[index2] = tokens[i];
                 index2++;
                 i++;
             }
         }
-    }
-    printf("1) %d   2) %d   \n", index, index2);
-    
+    }    
     return isError(retTokens1, index) || isError(retTokens2, index2) || twoArgFunc(tokens, size, index+index2+3);
 }

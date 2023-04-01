@@ -19,6 +19,7 @@ int rs(long long a, long long i) {
     return a >> i;
 }
 
+
 int lr(long long a, long long i) {
     return (a << i)|(a >> (BITS - i));
 }
