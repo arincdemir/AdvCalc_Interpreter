@@ -4,6 +4,7 @@
 #include "tokenList.h"
 #include "error.h"
 
+// slice a string starting start, ending end, and put it into the destination
 void sliceString(char *string, char *destination, int start, int end) {
     for (int i = 0; i < end - start; ++i) {
         destination[i] = string[start + i];
