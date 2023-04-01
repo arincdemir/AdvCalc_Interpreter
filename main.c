@@ -14,7 +14,7 @@ int main()
     while (1)
     {
         char input[256];
-        printf(">");
+        printf("> ");
         // take the input
         fgets(input, 256, stdin);
         if (input == NULL)
