@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+// either find an existing variable and modify it, or add a new variable
 void addVariable(variableList *list, char *name, long long value)
 {
     int size = list->size;
@@ -19,6 +20,7 @@ void addVariable(variableList *list, char *name, long long value)
     list->array[size - 1].value = value;
 }
 
+// create a variablelist and assign memory to it and the array of it
 variableList *createVariableList()
 {
     variableList *list = malloc(sizeof(variableList));
@@ -27,6 +29,7 @@ variableList *createVariableList()
     return list;
 }
 
+// search through the array to find and return a variable. defaults to 0
 long long getVariable(variableList *list, char *name)
 {
     int size = list->size;
@@ -41,6 +44,7 @@ long long getVariable(variableList *list, char *name)
     return 0;
 }
 
+// free the memory allocated with malloc
 void deleteList(variableList *list)
 {
     free(list->array);

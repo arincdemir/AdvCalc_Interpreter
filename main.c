@@ -9,17 +9,20 @@
 
 int main()
 {
+    // initialize the variable list
     variableList *variable_list = createVariableList();
     while (1)
     {
         char input[256];
-        printf(">");
+        printf("> ");
+        // take the input
         fgets(input, 256, stdin);
         if (input == NULL)
         {
             break;
         }
         Token tokens[256];
+        // convert characters into tokens
         int size = getTokens(input, tokens);
         if (size==0) continue;  
 
@@ -36,9 +39,11 @@ int main()
             }
             continue;
         }
-
+        
+        // change variable tokens into their respectful integer values
         changeVariables(tokens, size, variable_list);
 
+        // check if expression is an assignment and depending on that, assign or evaluate
         if (isAssignment(tokens, size))
         {
             assign(variable_list, tokens, size);

@@ -4,6 +4,7 @@
 #include "tokenList.h"
 #include "error.h"
 
+// slice a string starting start, ending end, and put it into the destination
 void sliceString(char *string, char *destination, int start, int end) {
     for (int i = 0; i < end - start; ++i) {
         destination[i] = string[start + i];
@@ -34,7 +35,6 @@ int parCheck(Token tokens[], int size) {
             return 1;
         }
     }
-    //printf("%d", count);
     if (count!=0) {
         return 1;
     }
@@ -57,7 +57,7 @@ int isNotSeqArr(Token tokens[], int size, TokenType tokenTypes1[], int size1, To
     }
     return 0;
 }
-
+// there is at least one sequential
 int isSeq(Token tokens[], int size, TokenType tokenType1, TokenType tokenType2) {
     for (int i = 0; i < size - 1; ++i) {
         if (tokens[i].tokenType == tokenType1) {
@@ -71,7 +71,7 @@ int isSeq(Token tokens[], int size, TokenType tokenType1, TokenType tokenType2) 
 }
 
 // there is at least one not sequential
-// 0: hiç art arda gelmediler   1: en az bir kez art arda geldi
+// 0: there are never not sequential    1: there is at least one time, they come after them
 int isSeqArr(Token tokens[], int size, TokenType tokenTypes1[], int size1, TokenType tokenTypes2[], int size2) {
     for (int i = 0; i < size - 1; ++i) {
         for (int j = 0; j < size1; ++j) {
@@ -87,6 +87,7 @@ int isSeqArr(Token tokens[], int size, TokenType tokenTypes1[], int size1, Token
     return 0;
 }
 
+//checks that whether there are two tokentype sequential
 int isNotSeq(Token tokens[], int size, TokenType tokenType1, TokenType tokenType2) {
     for (int i = 0; i < size - 1; ++i) {
         if (tokens[i].tokenType == tokenType1) {
@@ -98,40 +99,55 @@ int isNotSeq(Token tokens[], int size, TokenType tokenType1, TokenType tokenType
     return 0;
 }
 
+//if there is two-args-function check its requirements
 int twoArgFunc(Token tokens[], int size, int startIndex) {
-    if (startIndex==size-1) {
+    if (startIndex==size+1) {
         return 0;
-    }
-    
+    } else if (startIndex==size-1) {
+        return 0;
+    } else if (startIndex==size) {
+        //printf("3");
+        return 1;
+
+    }     
     Token retTokens1[256];
     int index;
     Token retTokens2[256]; 
     int index2;
+    int index0 = 0;
     int a = 0;
-    int i = startIndex;
+    int i;
     for (i = startIndex; i < size; i++) {
         if ((a==0) && (tokens[i].tokenType == FUNCTION_LR || tokens[i].tokenType == FUNCTION_LS || tokens[i].tokenType == FUNCTION_RR ||
             tokens[i].tokenType == FUNCTION_RS || tokens[i].tokenType == FUNCTION_XOR)) {
             index = 0;
+            index0 = i;
+            int whichComma = 0;
             for (int k = i+2; k < size; k++) {
-                int whichComma = 0;
                 if (tokens[k].tokenType == SEPERATOR_COMMA) {
+                    //printf("comma: %d\n", whichComma);
                     if(whichComma==0) {
                         a=1;
                         i=k;
                         if (index==0) {
+                            //printf("1");
                             return 1; 
                         }                    
                         break;
                     } else {
                         whichComma--;
+                        //printf("C rettokens1: %d\n", k);
+                        retTokens1[index] = tokens[k];
+                        index++;
                     }
-                } else if (tokens[i].tokenType == FUNCTION_LR || tokens[i].tokenType == FUNCTION_LS || tokens[i].tokenType == FUNCTION_RR ||
-                           tokens[i].tokenType == FUNCTION_RS || tokens[i].tokenType == FUNCTION_XOR) {
+                } else if (tokens[k].tokenType == FUNCTION_LR || tokens[k].tokenType == FUNCTION_LS || tokens[k].tokenType == FUNCTION_RR ||
+                           tokens[k].tokenType == FUNCTION_RS || tokens[k].tokenType == FUNCTION_XOR) {
                     whichComma++;
+                    //printf("A rettokens1: %d\n", k);
                     retTokens1[index] = tokens[k];
                     index++;
                 } else {
+                    //printf("B rettokens1: %d\n", k);
                     retTokens1[index] = tokens[k];
                     index++;
                 }
@@ -149,18 +165,24 @@ int twoArgFunc(Token tokens[], int size, int startIndex) {
                     count--;
                 }
                 if (count==-1) {
-                    a = 0;
                     if (index2==0) {
+                        //printf("2");
                         return 1;
                     }   
                     break;
                 }
-                
+                //printf("rettokens2: %d count: %d\n", i, count);
                 retTokens2[index2] = tokens[i];
                 index2++;
                 i++;
             }
-        }
-    }    
-    return isError(retTokens1, index) || isError(retTokens2, index2) || twoArgFunc(tokens, size, index+index2+3);
+            break;
+        } else return 0;
+    }   
+    int isEr = isError(retTokens1, index);
+    int isEr2 = isError(retTokens2, index2);
+    int twoArg = twoArgFunc(tokens, size, index0+index+index2+5);
+    //printf("isEr: %d  isEr2: %d  twoArg: %d\n", isEr, isEr2, twoArg);
+    //printf("index: %d  index2: %d\n", index, index2);
+    return isEr || isEr2 || twoArg;
 }
