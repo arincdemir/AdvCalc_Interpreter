@@ -42,4 +42,11 @@ This file has a few functions in it. First is `changeVariables(tokens, variableL
 
 The mightiest function of this file is `infixToPostfix(tokenList)` which, as the name suggests, converts the infix expression to postfix. This function uses an extended version of the "Shunting Yard" algorithm which can also handle unary or binary prefix functions. The algorithm relies on pushing the operands on the output, and pushing the operators on top of a stack while the current operators precedence is larger than the top one. Another big function of this file is `evaluatePostfix(queue)` which evaluates a postfix expression using a stack to push integers into. When an operator is encountered, the topmost two integers are taken as its operands, and again the answer is pushed on top of the stack. The final remaining element in the stack is the final answer.
 
+#### functions.c
+Here, we implemented the reserved keyword functions of our program: `xor`, `ls`, `rs`, `lr`, `rr`, `not`.
+
+#### helpers.c
+Some helper functions that we used in other files. 
+
 ## Difficulties Encountered
+Doing this project, we had to overcome many dificulties, mainly caused by our inexperience with the C language. Here are some dificulties we encountered and how we solved them:
