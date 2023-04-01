@@ -50,9 +50,12 @@ Some helper functions that we used in other files.
 
 ## Difficulties Encountered
 Doing this project, we had to overcome many dificulties, mainly caused by our inexperience with the C language. Here are some dificulties we encountered and how we solved them:
-- Memory management: 
-- Unavailability of OOP
+- Memory management: This was our first time that we wrote in a programming language without an included garbage collector. Our first problem occured when we realized that we cannot return variables that we just declared in a function, as it is stored in the stack memory and it is deleted after the function ends. So we got introduced the world of `malloc` and `free`. Now we acted much more careful what we wanted to store in the heap, and remembered to free it.
+- Unavailability of OOP: As an oop fan myself, i found it really hard to work with a programming language that did not have objects and the dot notation to call methods. However, after a while I got used to the "C way of doing things", which is passing data as arguments to functions. Now that I am used to that, I actually find it an OK way of doing things.
 - Unavailability of basic data types in C: As previous python and java programmers, we were used to finding the data types that we are looking for to be included in the standart libraries. However, it is not the case in C, and we had to write our own data structures. We needed two extra data types for this project:
   - Stack and queue: We implemented a data structure that can be used both as a stack and a queue using a doubly linked list.
   - Table for storing variables: The intuition here is to use a hashmap for O(1) operation cost. However, we found it to be overkill and just opted for an arraylist.
-- Using git.
+- Using git: We knew that using git to collaboratively develop a project the way to go. However, we did not know the best practices to use it. First, we were commiting into the main branch. After dealing with a few merge problems, we learned to always work on different branches. It worked fine for us, and we were able to complete the project with minimum number of conflicts.
+
+## Conclusion
+
