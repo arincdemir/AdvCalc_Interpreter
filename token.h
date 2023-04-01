@@ -35,7 +35,7 @@ typedef enum {
 
 typedef struct{
     TokenType tokenType;
-    int value;
+    long long value;
     char *name;
     Precedence precedence;
 }Token;
