@@ -48,7 +48,7 @@ int isError(Token tokens[], int sizeOfTokens)
     // if there is an error in the number of parentheses
     else if (parCheck(tokens, sizeOfTokens))
     {
-        printf("parenthesis error\n");
+        //printf("parenthesis error\n");
         return 1;
     }
 
@@ -93,7 +93,7 @@ int isError(Token tokens[], int sizeOfTokens)
             {
                 if ((tokens[0].tokenType != VARIABLE) || (sizeOfTokens == 2))
                 {
-                    printf("faulty assignment error\n");
+                    //printf("faulty assignment error\n");
                     return 1;
                 }
             }

@@ -104,7 +104,7 @@ int twoArgFunc(Token tokens[], int size, int startIndex) {
     if (startIndex==size+1) {
         return 0;
     } else if (startIndex==size-1) {
-        return 1;
+        return 0;
     } else if (startIndex==size) {
         return 1;
     }     
@@ -170,13 +170,5 @@ int twoArgFunc(Token tokens[], int size, int startIndex) {
         } else return 0;
     }   
 
-    if ((size>index+index2+4) && (tokens[index+index2+4].tokenType != OPERATOR_PLUS || tokens[index+index2+4].tokenType != OPERATOR_MINUS ||
-    tokens[index+index2+4].tokenType != OPERATOR_MULTIPLICATION || tokens[index+index2+4].tokenType != OPERATOR_AND ||
-    tokens[index+index2+4].tokenType != OPERATOR_OR)) return 1;
-    //printf("index: %d  index2: %d\n", index, index2);
-    //int isEr1 = isError(retTokens1, index);
-    //int isEr2 = isError(retTokens2, index2);
-    //int twoArg3 = twoArgFunc(tokens, size, index0+index+index2+5);
-    //printf("isEr1: %d  isEr2: %d   twoArg3: %d\n", isEr1, isEr2, twoArg3);
     return isError(retTokens1, index) || isError(retTokens2, index2) || twoArgFunc(tokens, size, index0+index+index2+5);
 }
