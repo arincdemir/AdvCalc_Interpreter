@@ -32,7 +32,7 @@ The entry program of the project. Here, our `variableList` is initialized. Insid
 In this file, the main function is `getTokens(expr)`. The expression is looped through characterwise in a loop, and tokens are created with the characters' respected tokenTypes. The precedences of the tokens are set if the tokens are operators. Also values of the integers and the names of the variables are taken here, and assigned to their respectful tokens. There are two additional functions `isReservedKeyword(str)`, and `getKeywordType(str)` for determining if a string represents one of the functions such as `lr` and `not`.
 
 #### error.c
-This file is used to check if the given expression is erronous. If an error exists, the program doesn't terminate, but prints `Error!`
+This file is used to check if the given expression is erronous. If an error exists, the program doesn't terminate, but prints `Error!` There are plenty of error types. Inorder to visualize, there are else-if and the functions that checks whether there is that spesific error type or not.
 
 #### tokenList.c
 Here, we have the implementation of a hybrid of queue and stack data structure that holds tokens. The implementation basically relies on doubly linked linked lists, and has `push()`, `popTop()`, `popBottom()`, `peekTop()` functionality. 
@@ -43,10 +43,10 @@ This file has a few functions in it. First is `changeVariables(tokens, variableL
 The mightiest function of this file is `infixToPostfix(tokenList)` which, as the name suggests, converts the infix expression to postfix. This function uses an extended version of the "Shunting Yard" algorithm which can also handle unary or binary prefix functions. The algorithm relies on pushing the operands on the output, and pushing the operators on top of a stack while the current operators precedence is larger than the top one. Another big function of this file is `evaluatePostfix(queue)` which evaluates a postfix expression using a stack to push integers into. When an operator is encountered, the topmost two integers are taken as its operands, and again the answer is pushed on top of the stack. The final remaining element in the stack is the final answer.
 
 #### functions.c
-Here, we implemented the reserved keyword functions of our program: `xor`, `ls`, `rs`, `lr`, `rr`, `not`.
+Here, we implemented the reserved keyword functions of our program: `xor`, `ls`, `rs`, `lr`, `rr`, `not`. Only `lr` and `rr` have not a spesific character. We wrote them by hand. Then, we find the symbols of the rest.
 
 #### helpers.c
-Some helper functions that we used in other files. 
+Some helper functions that we used in other files. (Error-type-check functions included.)
 
 ## Difficulties Encountered
 Doing this project, we had to overcome many dificulties, mainly caused by our inexperience with the C language. Here are some dificulties we encountered and how we solved them:
@@ -56,6 +56,7 @@ Doing this project, we had to overcome many dificulties, mainly caused by our in
   - Stack and queue: We implemented a data structure that can be used both as a stack and a queue using a doubly linked list.
   - Table for storing variables: The intuition here is to use a hashmap for O(1) operation cost. However, we found it to be overkill and just opted for an arraylist.
 - Using git: We knew that using git to collaboratively develop a project the way to go. However, we did not know the best practices to use it. First, we were commiting into the main branch. After dealing with a few merge problems, we learned to always work on different branches. It worked fine for us, and we were able to complete the project with minimum number of conflicts.
+- Error types are really hard to discover. We encounter a new type everyday and add that into our code.
 
 ## Conclusion
 The AdvCalc Interpreter project is a Python-like interpreter written in C language for the Systems Programming course project. The project is implemented in multiple files, with each file having a specific purpose to make it easier to debug and understand. We created a token structure with three attributes tokenType, value, and name, an array list implementation to match variable names and values, and a hybrid of queue and stack data structure to hold tokens. Additionally, the project includes an error checker to identify erroneous expressions and a series of functions to evaluate expressions.  While implementing the project, we encountered several challenges, such as memory management, the absence of object-oriented programming, and the unavailability of basic data types in C. However, they overcame these challenges by using dynamic memory allocation, passing data as arguments to functions, and careful implementation of data types. Overall, it was a great project that thought us compiler design, working with C and working with a group.
