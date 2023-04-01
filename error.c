@@ -10,6 +10,7 @@ int isError (Token tokens[], int sizeOfTokens) {
     TokenType funcsParen[] = {FUNCTION_LR, FUNCTION_LS, FUNCTION_NOT, FUNCTION_RR, FUNCTION_RS, FUNCTION_XOR};
     const int NUM_FUNC_PAREN = 6;
     TokenType openParan[] = {PARANTHESIS_OPENING};
+    TokenType varAndInt[] = {VARIABLE, INTEGER};
 
 
     if (sizeOfTokens==0)
@@ -49,6 +50,11 @@ int isError (Token tokens[], int sizeOfTokens) {
     // if there is sequential operation symbol
     else if (isSeqArr(tokens, sizeOfTokens, operators, NUM_OPERATORS, operators, NUM_OPERATORS)) {
         printf("sequential operation symbol\n");
+        return 1;
+    }
+
+    else if (isSeqArr(tokens, sizeOfTokens, varAndInt , 2, varAndInt, 2 )) {
+        printf("sequential integer or variable\n");
         return 1;
     }
 
