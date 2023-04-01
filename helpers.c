@@ -106,7 +106,6 @@ int twoArgFunc(Token tokens[], int size, int startIndex) {
     } else if (startIndex==size-1) {
         return 0;
     } else if (startIndex==size) {
-        printf("3");
         return 1;
 
     }     
@@ -122,22 +121,23 @@ int twoArgFunc(Token tokens[], int size, int startIndex) {
             tokens[i].tokenType == FUNCTION_RS || tokens[i].tokenType == FUNCTION_XOR)) {
             index = 0;
             index0 = i;
+            int whichComma = 0;
             for (int k = i+2; k < size; k++) {
-                int whichComma = 0;
                 if (tokens[k].tokenType == SEPERATOR_COMMA) {
                     if(whichComma==0) {
                         a=1;
                         i=k;
                         if (index==0) {
-                            printf("1");
                             return 1; 
                         }                    
                         break;
                     } else {
                         whichComma--;
+                        retTokens1[index] = tokens[k];
+                        index++;
                     }
-                } else if (tokens[i].tokenType == FUNCTION_LR || tokens[i].tokenType == FUNCTION_LS || tokens[i].tokenType == FUNCTION_RR ||
-                           tokens[i].tokenType == FUNCTION_RS || tokens[i].tokenType == FUNCTION_XOR) {
+                } else if (tokens[k].tokenType == FUNCTION_LR || tokens[k].tokenType == FUNCTION_LS || tokens[k].tokenType == FUNCTION_RR ||
+                           tokens[k].tokenType == FUNCTION_RS || tokens[k].tokenType == FUNCTION_XOR) {
                     whichComma++;
                     retTokens1[index] = tokens[k];
                     index++;
@@ -160,19 +160,19 @@ int twoArgFunc(Token tokens[], int size, int startIndex) {
                 }
                 if (count==-1) {
                     if (index2==0) {
-                        printf("2");
                         return 1;
                     }   
                     
                     break;
                 }
-                
                 retTokens2[index2] = tokens[i];
                 index2++;
                 i++;
             }
         } else return 0;
     }   
-
-    return isError(retTokens1, index) || isError(retTokens2, index2) || twoArgFunc(tokens, size, index0+index+index2+5);
+    int isEr = isError(retTokens1, index);
+    int isEr2 = isError(retTokens2, index2);
+    int twoArg = twoArgFunc(tokens, size, index0+index+index2+5);
+    return isEr || isEr2 || twoArg;
 }
