@@ -111,7 +111,7 @@ int isError(Token tokens[], int sizeOfTokens)
     {
         if (twoArgFunc(tokens, sizeOfTokens, 0))
         {   
-            printf("twoargfunc\n");
+            //printf("twoargfunc\n");
             return 1;
         }
     }
