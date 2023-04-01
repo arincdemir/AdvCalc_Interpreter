@@ -7,7 +7,7 @@ Made by:
 For our Cmpe230 (Systems Programming) course project 1.
 
 ## Purpose
-To create a python-like interpreter in C language. The interpreter should abide by operator precedence and associavity. Also the interpreter should have a few keywords for functions `not, lr(left rotate), rr(right rotate), ls(left shift), rs(right shift), or` .
+To create a python-like interpreter in C language. The interpreter should abide by operator precedence and associavity. Also the interpreter should have a few keywords for functions `not`, ` lr(left rotate)`, ` rr(right rotate)`, ` ls(left shift)`, ` rs(right shift)`, ` or` .
 
 ## Usage
 Compile the C files using `gcc *.c -o advCalc.exe`. Then run the program by typing `./advCalc.exe`. The program should run and you can type your expressions or assignments in it. You can:
@@ -58,4 +58,4 @@ Doing this project, we had to overcome many dificulties, mainly caused by our in
 - Using git: We knew that using git to collaboratively develop a project the way to go. However, we did not know the best practices to use it. First, we were commiting into the main branch. After dealing with a few merge problems, we learned to always work on different branches. It worked fine for us, and we were able to complete the project with minimum number of conflicts.
 
 ## Conclusion
-
+The AdvCalc Interpreter project is a Python-like interpreter written in C language for the Systems Programming course project. The project is implemented in multiple files, with each file having a specific purpose to make it easier to debug and understand. We created a token structure with three attributes tokenType, value, and name, an array list implementation to match variable names and values, and a hybrid of queue and stack data structure to hold tokens. Additionally, the project includes an error checker to identify erroneous expressions and a series of functions to evaluate expressions.  While implementing the project, we encountered several challenges, such as memory management, the absence of object-oriented programming, and the unavailability of basic data types in C. However, they overcame these challenges by using dynamic memory allocation, passing data as arguments to functions, and careful implementation of data types. Overall, it was a great project that thought us compiler design, working with C and working with a group.
