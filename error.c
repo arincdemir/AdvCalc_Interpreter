@@ -67,11 +67,11 @@ int isError (Token tokens[], int sizeOfTokens) {
         }
     }
 
-    else if (twoArgFunc(tokens, sizeOfTokens, 0))
-    {
-        return 1;
+    //else if (twoArgFunc(tokens, sizeOfTokens, 0))
+    //{
+    //    return 1;
         
-    }
+    //}
     
 
     
