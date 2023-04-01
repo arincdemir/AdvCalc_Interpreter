@@ -50,3 +50,9 @@ Some helper functions that we used in other files.
 
 ## Difficulties Encountered
 Doing this project, we had to overcome many dificulties, mainly caused by our inexperience with the C language. Here are some dificulties we encountered and how we solved them:
+- Memory management: 
+- Unavailability of OOP
+- Unavailability of basic data types in C: As previous python and java programmers, we were used to finding the data types that we are looking for to be included in the standart libraries. However, it is not the case in C, and we had to write our own data structures. We needed two extra data types for this project:
+  - Stack and queue: We implemented a data structure that can be used both as a stack and a queue using a doubly linked list.
+  - Table for storing variables: The intuition here is to use a hashmap for O(1) operation cost. However, we found it to be overkill and just opted for an arraylist.
+- Using git.
