@@ -121,9 +121,15 @@ int binToInt(int bin) {
 }
 
 int twoArgFunc(Token tokens[], int size, int startIndex) {
-    if (startIndex==size-1) {
+    printf("startIndex: %d   size: %d\n", startIndex, size);
+    if (startIndex==size+1) {
         return 0;
-    }
+    } else if (startIndex==size-1) {
+        return 0;
+    } else if (startIndex==size) {
+        return 1;
+    } 
+
     
     Token retTokens1[256];
     int index;
@@ -142,6 +148,7 @@ int twoArgFunc(Token tokens[], int size, int startIndex) {
                         a=1;
                         i=k;
                         if (index==0) {
+                            printf("1111111");
                             return 1; 
                         }                    
                         break;
@@ -173,6 +180,7 @@ int twoArgFunc(Token tokens[], int size, int startIndex) {
                 if (count==-1) {
                     a = 0;
                     if (index2==0) {
+                        printf("222222222");
                         return 1;
                     }   
                     break;
@@ -182,7 +190,12 @@ int twoArgFunc(Token tokens[], int size, int startIndex) {
                 index2++;
                 i++;
             }
-        }
-    }    
-    return isError(retTokens1, index) || isError(retTokens2, index2) || twoArgFunc(tokens, size, index+index2+3);
+        } else return 0;
+    }   
+    //printf("index: %d  index2: %d\n", index, index2);
+    int isEr1 = isError(retTokens1, index);
+    int isEr2 = isError(retTokens2, index2);
+    int twoArg3 = twoArgFunc(tokens, size, index+index2+5);
+    //printf("isEr1: %d  isEr2: %d   twoArg3: %d\n", isEr1, isEr2, twoArg3);
+    return isEr1 || isEr2 || twoArg3;
 }

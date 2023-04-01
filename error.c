@@ -12,6 +12,7 @@ int isError (Token tokens[], int sizeOfTokens) {
     TokenType openParan[] = {PARANTHESIS_OPENING};
     TokenType varAndInt[] = {VARIABLE, INTEGER};
 
+    //printf("in isError\n");
 
     if (sizeOfTokens==0)
     {   
@@ -92,10 +93,7 @@ int isError (Token tokens[], int sizeOfTokens) {
         }
     }
     
-    
-    
-
-    
+    //printf("NO ERROR\n");
     //NO ERROR
     return 0;
 }
