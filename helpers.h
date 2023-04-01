@@ -25,7 +25,7 @@ int isNotSeq(Token tokens[], int size, TokenType tokenType1, TokenType tokenType
 int intToBinary(int dec);
 int binToInt(int bin);
 int loggg(int num);
-Token* twoArgFunc(Token tokens[], int size);
+int twoArgFunc(Token tokens[], int size, int startIndex);
 
 #endif 
 

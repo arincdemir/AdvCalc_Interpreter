@@ -17,6 +17,12 @@ int isError (Token tokens[], int sizeOfTokens) {
         return 1;
     }
 
+    else if (tokenTypeCounter(SEPERATOR_COMMA, tokens, sizeOfTokens)!=(tokenTypeCounter(FUNCTION_LR, tokens, sizeOfTokens)+ tokenTypeCounter(FUNCTION_LS, tokens, sizeOfTokens) +
+    tokenTypeCounter(FUNCTION_RR, tokens, sizeOfTokens) + tokenTypeCounter(FUNCTION_RS, tokens, sizeOfTokens) + tokenTypeCounter(FUNCTION_XOR, tokens, sizeOfTokens))) {
+        return 1;
+    }
+    
+
     else if (tokenTypeCounter(EQUAL_SIGN, tokens, sizeOfTokens) > 1) {
         printf("more than one equal sign\n");
         return 1;
@@ -60,6 +66,14 @@ int isError (Token tokens[], int sizeOfTokens) {
             }
         }
     }
+
+    else if (twoArgFunc(tokens, sizeOfTokens, 0))
+    {
+        return 1;
+        
+    }
+    
+
     
     //NO ERROR
     return 0;
