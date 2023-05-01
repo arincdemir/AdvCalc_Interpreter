@@ -4,7 +4,6 @@
 
 int isError(Token tokens[], int sizeOfTokens)
 {
-
     TokenType operators[] = {OPERATOR_AND, OPERATOR_MINUS, OPERATOR_MULTIPLICATION, OPERATOR_OR, OPERATOR_PLUS};
     const int NUM_OPERATORS = 5;
     TokenType funcsParen[] = {FUNCTION_LR, FUNCTION_LS, FUNCTION_NOT, FUNCTION_RR, FUNCTION_RS, FUNCTION_XOR};
